@@ -1,12 +1,10 @@
 # William Strawgate Easton
 
-## Introductions
-
 My name is Bill and I live in Madison, Wisconsin. I am an Endpoint Management enthusiast and I spend my days using tools like IBM BigFix to do things they weren't meant to!
 
 # Experience
 
-My Experience in the Information Security field includes
+My Experience in the Information Security field includes full-time consulting work, freelance consulting, volunteer work, and security disclosures to major organizations.
 
 ## Open Source
 
@@ -17,6 +15,16 @@ I try to be a significant contributor to the communities that I am a part of -- 
 C3 as a project exists solely to help organizations adhere to the DRY principle (Don't Repeat Yourself). So many organizations invest significant time and money into developing content that is applicable to more than just them. In addition, many organizations take a long time to really get effective use from their Endpoint Management tools due to the buildout required.
 
 The goal of C3 is to do this buildout for them. C3 exists to provide a great collection of content that is general enough to be applicable everywhere but specific enough to solve problems organizations face today without modification. The best part about C3 is that it is currently used in production! It is a mix of content I have created, my friends have created and the community has created. Content not created by me is properly attributed (and if it’s not let me know and I’ll fix it!)
+
+## Security disclosures
+
+### IBM BigFix
+
+Discovered a vulnerability which permitted unauthenticated uploading of files and content to systems management infrastructure allowing adversaries to denial of service infrastructure as well as host phishing pages that would appear to originate from within the organization. Disclosed privately in December of 2015.
+
+### UW-Madison AANTS
+
+Discovered a series of vulnerabilities which, when combined, would allow a remote unauthenticated (anonymous) attacker to manipulate all managed switches, routers, and firewalls on the UW Campus network. Disclosed privately in February of 2015.
 
 ## RES Software
 
@@ -49,23 +57,19 @@ My expertise was utilized in areas of industry with complex compliance concerns 
 ## UW-Madison
 
 ### Endpoint Security Specialist
-E N D P O I N T M A N A G E M E N T A N D S E C U R I T Y S P E C I A L I S T
-UW-Madison ▪ Madison, WI ▪ January 2011 ▪ June 2015
-Endpoint Management and Security Specialist responsible for architecting
-and implementing endpoint and server security solutions.
+
+From January of 2011 to June of 2015 I was an Endpoint Management and Security Specialist at the University of Wisconsin-Madison working from Madison, Wisconsin
+
+My primary responsibility was to architect and implement endpoint and server security solutions. In this role I spearheaded a large number of projects covering a wide variety of areas.
+
 Regulatory Compliance Work
+
 + Federal Select Agent (Biological Select Agents and Toxins)
 + Payment Card Industry Data Security Standards (Credit Card data)
-Skills
-+ IBM Endpoint Manager (TEM, BigFix)/SCCM
-+ DeployStudio/NetSUS/Microsoft Deployment Toolkit/WDS
-+ Active Directory/Group Policy/Open Directory/Centrify
-+ Hyper-V/ESXi
-+ Symantec Endpoint Protection/System Center Endpoint Protection
-+ EMET, Applocker, App-V, Identity Finder, Secunia CSI
-+ C#, Powershell, Python, Bash, Batch
-+ Windows and Mac OS Client and Server
++ CJIS (Criminal Justice Information Services)
+
 Major Projects
+
 + Primary application administrator for all three UW-Madison
 Campus IBM Endpoint Manager implementations managing
 15,000+ endpoints and servers.
@@ -74,18 +78,18 @@ various UW-Madison campus tools and infrastructure
 + Completed three large scale migrations from System Center
 Configuration Manager (SCCM) to IBM Endpoint Manager (IEM)
 
+## Miscellaneous
 
+Throughout my career I have gained invaluable experience with a number of tools including:
 
-Content in this site includes:
-
-* Applocker Application Whitelisting Fixlets and Analyses - [Setup Guide](https://github.com/strawgate/C3-Protect/wiki/Applocker)
-* Avast Antivirus Fixlets and Analyses
-* Bitlocker Fixlets and Analyses - [Setup Guide](https://github.com/strawgate/C3-Protect/wiki/Bitlocker)
-* Enhanced Mitigation Experience Toolkit - [Setup Guide](https://github.com/strawgate/C3-Protect/wiki/EMET)
-* FileVault 2 Fixlets and Analyses - [Setup Guide](https://github.com/strawgate/C3-Protect/wiki/FileVault-2)
-* Firewall Fixlets and Analyses
-* Trusted Platform Module Fixlets and Analyses
-* Windows Cached Credentials Probe and analysis - [Setup Guide](https://github.com/strawgate/C3-Protect/wiki/Windows-Credentials)
++ IBM Endpoint Manager (TEM, BigFix)/SCCM
++ DeployStudio/NetSUS/Microsoft Deployment Toolkit/WDS
++ Active Directory/Group Policy/Open Directory/Centrify
++ Hyper-V/ESXi
++ Symantec Endpoint Protection/System Center Endpoint Protection
++ EMET, Applocker, App-V, Identity Finder, Secunia CSI
++ C#, Powershell, Python, Bash, Batch
++ Windows and Mac OS Client and Server
 
 # Education
 
@@ -132,7 +136,4 @@ Part time student seeking Bachelor of Sciences in Computer Science : 2010 -- Cur
 
 # Volunteering
 
-## Habitat for Humanity
-
-## Red Cross
-If you're having issues with the content feel free to create issues in the repository or contact me on the BigFix forum.
+In my free time I enjoy volunteering for various organizations in the Madison area including: Franklin Hiram King, Habitat for Humanity Dane County, and the American Red Cross.
