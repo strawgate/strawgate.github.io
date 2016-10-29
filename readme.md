@@ -118,7 +118,6 @@ Part time student seeking Bachelor of Sciences in Computer Science : 2010 -- Cur
 ### Intel Security Specialist
 
 * Intel Security Product Specialist for ePolicy Orchestrator
-
 ### Symantec Specialist
 
 * Symantec Certified Specialist for Endpoint Protection
