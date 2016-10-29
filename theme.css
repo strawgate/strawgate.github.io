@@ -21,7 +21,6 @@
   vertical-align: bottom; }
 
 .title-card .headline {
-  vertical-align: bottom;
   display: inline-block;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -69,7 +68,8 @@
 
 @media (max-width: 480px) /* Mobile */ {
   .title-card {
-    padding: 50px 0; }
+    padding-left: 10px;
+      padding-right: 10px; }
   .title-card .headline {
     padding-left: 10px;
     padding-right: 10px;
