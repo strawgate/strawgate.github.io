@@ -8,19 +8,19 @@ My Experience in the Information Security field includes: full-time consulting w
 
 ## Open Source
 
-In my free time I try to be a significant contributor to the communities that I am a part of -- I think I do the best job within the IBM BigFix community. I actively maintain a number of projects (C3) used by organizations from all industries and backgrounds including Federal, State, and Local Governments, Finance, Media, Retail, and Higher Education.
+In my free time I try to be a significant contributor to the communities that I am a part of -- I think I do the best job within the IBM BigFix community. I actively maintain a number of projects (C3) used by organizations from all industries and backgrounds including Federal, State, and Local Governments, Defense, Finance, Media, Retail, and Higher Education.
 
 ### C3 for IBM BigFix
 
-C3 as a set of projects exists solely to help organizations hit the ground running with Endpoint Management So many organizations invest significant time and money into developing content that could be applicable to more than just them but they never actually share what they are doing. In addition, many organizations take a long time to really get effective use from their Endpoint Management tools due to the buildout required.
+C3 as a set of projects exists solely to help organizations hit the ground running with Endpoint Management. So many organizations invest significant time and money into developing content that could be applicable to more than just them but they never actually share what they are doing. In addition, many organizations take a long time to get effective use from their Endpoint Management tools due to the buildout required.
 
-The goal of C3 is to do this buildout for them. C3 exists to provide a large collection of content that is general enough to be applicable everywhere but specific enough to solve problems organizations face today without modification or advanced coding. The best part about C3 is that it is currently used in production! C3 is made up primarily of content I have created but also relies heavily on other community contributors.
+The goal of C3 is to do this buildout for them. C3 exists to provide a large collection of content that is general enough to be applicable everywhere but specific enough to solve problems organizations face today without modification. The best part about C3 is that it is currently used in production! C3 is made up primarily of content I have created but also relies on other community contributors.
 
 My favorite project within C3 is called C3 Patch and it's a set of tools that automatically generates patches for third-party applications (80+ different applications!), tests them on a fleet of virtual machines and publishes them for immediate use.
 
 ## Security disclosures
 
-### IBM BigFix
+### IBM BigFix (IBM CVE-2016-0214)
 
 In December of 2015 I discovered and privately disclosed a vulnerability in the IBM BigFix platform which permitted unauthenticated uploading of files and content to systems management infrastructure allowing adversaries to perform denial of service attacks as well as host phishing pages that would appear to originate from within the organization.
 
@@ -34,7 +34,7 @@ In February of 2015 I discovered and privately disclosed a series of vulnerabili
 
 Starting in June of 2016 to this day I am the advising consultant for BigFix at RES Software working remotely from Madison, Wisconsin! In this role I travel approximately 10% of the time.
 
-My primary responsibility at RES Software is to provide IBM BigFix and RES ONE Workspace expertise to US Federal Agencies implementing the Federal Goverment's Continuous Diagnostics & Mitigation (CDM) Initiative.
+My primary responsibility at RES Software is to provide IBM BigFix and RES ONE Workspace expertise to US Federal Agencies implementing the Federal Government's Continuous Diagnostics & Mitigation (CDM) Initiative.
 
 My day-to-day at RES Software includes developing, testing, and supporting the RES ONE Workspace and IBM BigFix Integration which brings the power of RES ONE Workspace into IBM BigFix.
 
@@ -50,7 +50,7 @@ In this role I helped manage relationships with partner, customers, and subcontr
 
 ### Endpoint Security Team Lead
 
-From June of 2015 to June of 2016 I was the Endpoint and Mobile Security Team Lead at Avnet Security Services working remotely from Madison, Wisconsin. As part of my responsibilities as a Delivery Manager, I was traveling approximately 25% of the time.
+From June of 2015 to June of 2016 I was the Endpoint and Mobile Security Team Lead at Avnet Security Services working remotely from Madison, Wisconsin. As part of my responsibilities as the Endpoint Security Team Lead, I was traveling approximately 25% of the time.
 
 My primary responsibility was to develop and grow the Endpoint and Mobile security consulting practice at Avnet Services. In this role I worked primarily with customers in media, finance, energy, healthcare, and government helping them to secure their enterprise environments.
 
