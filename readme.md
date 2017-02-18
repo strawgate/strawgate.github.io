@@ -1,6 +1,6 @@
 # William Strawgate Easton
 
-My name is Bill and I live in Madison, Wisconsin. I am an Endpoint Management enthusiast and I spend my days using tools like IBM BigFix to do things they weren't meant to do!
+My name is Bill and I live in Madison, Wisconsin. I am an IT Security enthusiast and I spend my days using tools like IBM BigFix to do things they weren't meant to do!
 
 # Experience
 
@@ -8,7 +8,7 @@ My Experience in the Information Security field includes: full-time consulting w
 
 ## Open Source
 
-In my free time I try to be a significant contributor to the communities that I am a part of -- I think I do the best job within the IBM BigFix community. I actively maintain a number of projects (C3) used by organizations from all industries and backgrounds including Federal, State, and Local Governments, Defense, Finance, Media, Retail, and Higher Education.
+In my free time I try to be a significant contributor to the communities that I am a part of -- I think I do the best job within the IBM BigFix community. I actively maintain a number of projects (C3) used by 100+ organizations from all industries and backgrounds including Federal, State, and Local Governments, Defense, Finance, Media, Retail, and Higher Education.
 
 ### C3 for IBM BigFix
 
@@ -20,7 +20,7 @@ My favorite project within C3 is called C3 Patch and it's a set of tools that au
 
 ## Security disclosures
 
-### IBM BigFix (IBM CVE-2016-0214)
+### IBM BigFix (CVE-2016-0214)
 
 In December of 2015 I discovered and privately disclosed a vulnerability in the IBM BigFix platform which permitted unauthenticated uploading of files and content to systems management infrastructure allowing adversaries to perform denial of service attacks as well as host phishing pages that would appear to originate from within the organization.
 
@@ -44,9 +44,9 @@ I held a number of positions during my tenure at Avnet Security Services startin
 
 ### Delivery Manager
 
-From November of 2015 to June of 2016 I was the US Delivery Manager for Avnet Security Services working remotely from Madison, Wisconsin. As part of my responsibilities as a Delivery Manager, I was traveling approximately 75% of the time.
+From November of 2015 to June of 2016 I was the US Delivery Manager for Avnet Security Services working remotely from Madison, Wisconsin. As part of my responsibilities as a Delivery Manager, I traveled approximately 75% of the time.
 
-In this role I helped manage relationships with partner, customers, and subcontractors. I spent significant time handling service management, continual service improvement and improving customer and partner satisfaction. I was responsible for Statement of Work creation, Statement of Work approval, rate negotiation with partners and subcontractors as well as personnel management.
+In this role I helped manage relationships with partners, customers, and subcontractors. I spent significant time handling service management, continual service improvement and improving customer and partner satisfaction. I was responsible for Statement of Work creation, Statement of Work approval, rate negotiation with partners and subcontractors as well as personnel management.
 
 ### Endpoint Security Team Lead
 
@@ -86,6 +86,7 @@ Throughout my career I have gained invaluable experience with a number of tools 
 
 + IBM BigFix and Microsoft System Center
 + DeployStudio and NetSUS
++ Graylog, Splunk and QRadar
 + Microsoft Deployment Toolkit and Windows Deployment Services
 + Active Directory, Group Policy, Open Directory, Centrify
 + Hyper-V, VMWare ESXi
@@ -120,6 +121,10 @@ Part time student seeking Bachelor of Sciences in Computer Science : 2010 -- Cur
 
 * IBM Certified Associate for BigFix
 
+### RES Certified Professional
+
+* RES ONE Workspace 2016 Certified Professional
+
 ### Intel Security Specialist
 
 * Intel Security Product Specialist for ePolicy Orchestrator
@@ -142,3 +147,7 @@ Part time student seeking Bachelor of Sciences in Computer Science : 2010 -- Cur
 # Volunteering
 
 In my free time I enjoy volunteering for various organizations in the Madison area including: Franklin Hiram King, Habitat for Humanity Dane County, and the American Red Cross.
+
+# Contact
+
+If you'd like to contact me please visit my [LinkedIn](https://www.linkedin.com/in/williamseaston) and send me a message!
