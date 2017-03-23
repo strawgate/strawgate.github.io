@@ -119,7 +119,9 @@ Part time student seeking Bachelor of Sciences in Computer Science : 2010 -- Cur
 
 ### IBM Associate
 
-* IBM Certified Associate for BigFix
+* IBM Certified Associate for IBM BigFix
+* IBM Certified Deployment Specialist for IBM BigFix
+* IBM MaaS360 Cloud Administrator
 
 ### RES Certified Professional
 
