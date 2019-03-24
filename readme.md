@@ -20,6 +20,14 @@ My favorite project within C3 is called C3 Patch and it's a set of tools that au
 
 ## Security disclosures
 
+### IBM BigFix (CVE-2017-1466)
+
+Embargoed Advisery
+
+### IBM BigFix (CVE-2017-1222)
+
+IBM BigFix Platform does not perform an authentication check for a critical resource or functionality allowing anonymous users access to protected areas.
+
 ### IBM BigFix (CVE-2016-0214)
 
 In December of 2015 I discovered and privately disclosed a vulnerability in the IBM BigFix platform which permitted unauthenticated uploading of files and content to systems management infrastructure allowing adversaries to perform denial of service attacks as well as host phishing pages that would appear to originate from within the organization.
@@ -28,21 +36,29 @@ In December of 2015 I discovered and privately disclosed a vulnerability in the 
 
 In February of 2015 I discovered and privately disclosed a series of vulnerabilities which, when combined, would allow a remote unauthenticated (anonymous) attacker to manipulate all managed switches, routers, and firewalls on the UW Campus network.
 
+## VERVE Industrial Protection
+
+### Chief Technology Officer
+
+Starting in June of 2017 I became the Chief Technology Officer at Verve Industrial Protection with a mission to protect the world's critical infrastructure.
+
+My job is to lead the development of our various software solutions. By incorporating Asset Management (Agent and Agentless), Asset Discovery, Log Management and Advanced Analytical capabilities, we help organizations cut through the noise of alerts, disprate tools, and information fragmentation that plague their environments.
+
 ## RES Software
 
-### Technical Consultant
+### Principal Consultant
 
-Starting in June of 2016 to this day I am the advising consultant for BigFix at RES Software working remotely from Madison, Wisconsin! In this role I travel approximately 10% of the time.
+I was the principal consultant for BigFix at RES Software working remotely from Madison, Wisconsin! 
 
-My primary responsibility at RES Software is to provide IBM BigFix and RES ONE Workspace expertise to US Federal Agencies implementing the Federal Government's Continuous Diagnostics & Mitigation (CDM) Initiative.
+My primary responsibility at RES Software was to provide IBM BigFix and RES ONE Workspace expertise to US Federal Agencies implementing the Federal Government's Continuous Diagnostics & Mitigation (CDM) Initiative.
 
-My day-to-day at RES Software includes developing, testing, and supporting the RES ONE Workspace and IBM BigFix Integration which brings the power of RES ONE Workspace into IBM BigFix.
+My day-to-day at RES Software included developing, testing, and supporting the RES ONE Workspace and IBM BigFix Integration which brings the power of RES ONE Workspace into IBM BigFix.
 
 ## Avnet Security Services
 
 I held a number of positions during my tenure at Avnet Security Services starting as an Endpoint Security Consultant in May of 2015, becoming the Team Lead for Endpoint Security in June of 2015, and finally being promoted again to Delivery Manager in November of 2015. Each promotion represented an expansion of responsibilities and not a shift into an entirely new role -- even as Delivery Manager I continued to lead the Endpoint Security team and provide Endpoint Security Consulting.
 
-### Delivery Manager
+### US Delivery Manager
 
 From November of 2015 to June of 2016 I was the US Delivery Manager for Avnet Security Services working remotely from Madison, Wisconsin. As part of my responsibilities as a Delivery Manager, I traveled approximately 75% of the time.
 
@@ -85,6 +101,9 @@ Configuration Manager (SCCM) to IBM Endpoint Manager (IEM)
 Throughout my career I have gained invaluable experience with a number of tools including:
 
 + IBM BigFix and Microsoft System Center
++ Docker and Docker Swarm
++ Elasticsearch, Logstash, Kibana and Beats
++ Visual Studio Team Services
 + DeployStudio and NetSUS
 + Graylog, Splunk and QRadar
 + Microsoft Deployment Toolkit and Windows Deployment Services
