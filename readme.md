@@ -22,7 +22,7 @@ My favorite project within C3 is called C3 Patch and it's a set of tools that au
 
 ### IBM BigFix (CVE-2017-1466)
 
-Embargoed Advisery
+Embargoed Advisory
 
 ### IBM BigFix (CVE-2017-1222)
 
@@ -42,7 +42,7 @@ In February of 2015 I discovered and privately disclosed a series of vulnerabili
 
 Starting in June of 2017 I became the Chief Technology Officer at Verve Industrial Protection with a mission to protect the world's critical infrastructure.
 
-My job is to lead the development of our various software solutions. By incorporating Asset Management (Agent and Agentless), Asset Discovery, Log Management and Advanced Analytical capabilities, we help organizations cut through the noise of alerts, disprate tools, and information fragmentation that plague their environments.
+My job is to lead the development of our various software solutions. By incorporating Asset Management (Agent and Agentless), Asset Discovery, Log Management and Advanced Analytical capabilities, we help organizations cut through the noise of alerts, disparate tools, and information fragmentation that plague their environments.
 
 ## RES Software
 
