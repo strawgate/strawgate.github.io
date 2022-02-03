@@ -20,6 +20,10 @@ My favorite project within C3 is called C3 Patch and it's a set of tools that au
 
 ## Security disclosures
 
+### Windows Defender Application Control (VIRT-051861)
+
+[Click here for more information.](https://github.com/strawgate/Advisories/blob/main/Microsoft/VULN-051861.md)
+
 ### IBM BigFix (CVE-2017-1466)
 
 Embargoed Advisory
