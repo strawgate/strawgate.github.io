@@ -1,10 +1,10 @@
 # William Strawgate Easton
 
-My name is Bill and I live in Madison, Wisconsin. I am an IT Security enthusiast and I spend my days using tools like IBM BigFix to do things they weren't meant to do!
+My name is Bill and I live in Madison, Wisconsin. I am an Cyber Security enthusiast and I spend my days building tools that help the largest organizations in the world protect their datacenter and operational environments.
 
 # Experience
 
-My Experience in the Information Security field includes: full-time consulting work, freelance consulting, volunteer work, and security disclosures to major organizations.
+My Experience in Cyber Security includes: full-time product management, software devleopment, consulting volunteer work, and security disclosures to major organizations (Microsoft, IBM, Ivanti, and University of Wisconsin-Madison.
 
 ## Open Source
 
@@ -19,6 +19,14 @@ The goal of C3 is to do this buildout for them. C3 exists to provide a large col
 My favorite project within C3 is called C3 Patch and it's a set of tools that automatically generates patches for third-party applications (80+ different applications!), tests them on a fleet of virtual machines and publishes them for immediate use.
 
 ## Security disclosures
+
+### Windows Powershell Core (Embargoed)
+
+Embargoed Advisory
+
+### Windows Defender Application Control (Embargoed)
+
+Embargoed Advisory
 
 ### Windows Defender Application Control (VIRT-051861)
 
@@ -120,14 +128,6 @@ Throughout my career I have gained invaluable experience with a number of tools 
 + C#, Powershell, Python, Bash, Batch
 + Windows and Mac OS Client and Server
 
-# Education
-
-## University
-
-### UW-Madison
-
-Part time student seeking Bachelor of Sciences in Computer Science : 2010 -- Current
-
 ## Certifications
 
 ### ISC(2) CISSP
@@ -171,7 +171,7 @@ Part time student seeking Bachelor of Sciences in Computer Science : 2010 -- Cur
 
 # Volunteering
 
-In my free time I enjoy volunteering for various organizations in the Madison area including: Franklin Hiram King, Habitat for Humanity Dane County, and the American Red Cross.
+In my free time I enjoy volunteering for various organizations in the Madison area including: Occupaws, Franklin Hiram King, Habitat for Humanity Dane County, and the American Red Cross.
 
 # Contact
 
