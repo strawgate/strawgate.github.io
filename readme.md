@@ -1,10 +1,10 @@
 # William Strawgate Easton
 
-My name is Bill and I live in Madison, Wisconsin. I am an Cyber Security enthusiast and I spend my days building tools that help the largest organizations in the world protect their datacenter and operational environments.
+I am a Cyber Security expert and I spend my days building tools that help the largest organizations in the world protect their datacenter and operational environments.
 
 # Experience
 
-My Experience in Cyber Security includes: full-time product management, software devleopment, consulting volunteer work, and security disclosures to major organizations (Microsoft, IBM, Ivanti, and University of Wisconsin-Madison.
+My Experience in Cyber Security includes: full-time product management, software development, consulting volunteer work, and security disclosures to major organizations (Microsoft, IBM, Ivanti, and University of Wisconsin-Madison).
 
 ## Open Source
 
