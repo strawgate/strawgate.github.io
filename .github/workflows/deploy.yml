@@ -3,9 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
-    paths:
-      - 'strawgate-site/**'
-      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
@@ -30,7 +27,7 @@ jobs:
           path: strawgate-site
           node-version: 20
           package-manager: npm
-
+.
   deploy:
     needs: build
     runs-on: ubuntu-latest
