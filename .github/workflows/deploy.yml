@@ -24,7 +24,7 @@ jobs:
       - name: Install, build, and upload
         uses: withastro/action@v3
         with:
-          path: strawgate-site
+          path: .
           node-version: 20
           package-manager: npm
 .
