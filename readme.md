@@ -1,178 +1,172 @@
-# William Strawgate Easton
+# strawgate.com
 
-I am a Cyber Security expert and I spend my days building tools that help the largest organizations in the world protect their datacenter and operational environments.
+Bill Easton's personal site. Built with [Astro 5](https://astro.build), markdown-powered, with live GitHub + PyPI stats refreshed daily.
 
-# Experience
+This is **the populated version** — every page ships with real copy and every big number on the site is refreshed from source. You can `npm install && npm run build` and deploy as-is.
 
-My Experience in Cyber Security includes: full-time product management, software development, consulting volunteer work, and security disclosures to major organizations (Microsoft, IBM, Ivanti, and University of Wisconsin-Madison).
+## Quick start
 
-## Open Source
+```sh
+npm install
+npm run dev      # dev server at http://localhost:4321
+npm run build    # static output in ./dist
+npm run preview  # serve the built output
+npm run stats    # refresh src/data/stats.json from GitHub + PyPI
+```
 
-In my free time I try to be a significant contributor to the communities that I am a part of -- I think I do the best job within the IBM BigFix community. I actively maintain a number of projects (C3) used by 100+ organizations from all industries and backgrounds including Federal, State, and Local Governments, Defense, Finance, Media, Retail, and Higher Education.
+## Live stats pipeline
 
-### C3 for IBM BigFix
+The site reads headline numbers from `src/data/stats.json`, which is refreshed daily by a GitHub Actions workflow. Unlike hardcoded numbers, these stay accurate without manual work.
 
-C3 as a set of projects exists solely to help organizations hit the ground running with Endpoint Management. So many organizations invest significant time and money into developing content that could be applicable to more than just them but they never actually share what they are doing. In addition, many organizations take a long time to get effective use from their Endpoint Management tools due to the buildout required.
+**What's tracked** (see `scripts/refresh-stats.mjs`):
 
-The goal of C3 is to do this buildout for them. C3 exists to provide a large collection of content that is general enough to be applicable everywhere but specific enough to solve problems organizations face today without modification. The best part about C3 is that it is currently used in production! C3 is made up primarily of content I have created but also relies on other community contributors.
+- **User-level** (from GitHub REST + Search):
+  - public_repos, followers
+  - merged PR count (all-time, current year, previous year) across all of GitHub
+- **Per-repo** (from GitHub REST) for a curated list in `TRACKED_REPOS`:
+  - stars, forks, open issues, open PRs, archived status, last pushed
+  - current list: PrefectHQ/fastmcp, strawgate/py-key-value, strawgate/py-mcp-collection, strawgate/fastmcp-agents, strawgate/filesystem-operations-mcp, strawgate/es-knowledge-base-mcp, strawgate/augmented-infrastructure, strawgate/o11ykit
+- **PyPI downloads** (from pypistats.org) for py-key-value-aio
+  - last_day, last_week, last_month
 
-My favorite project within C3 is called C3 Patch and it's a set of tools that automatically generates patches for third-party applications (80+ different applications!), tests them on a fleet of virtual machines and publishes them for immediate use.
+**What surfaces where:**
 
-## Security disclosures
+- `src/components/FactsRow.astro` — the four big numbers on Home and About. Mix of static ($200M Verve exit, 1-of-2 FastMCP maintainers) and live (py-key-value daily downloads, lifetime OSS PRs).
+- `src/components/ProjectGrid.astro` — per-repo stars and archived badges, looked up by `githubRepo` field in each project.
 
-### Windows Powershell Core (Embargoed)
+**How refreshes happen:**
 
-Embargoed Advisory
+- Automatic: `.github/workflows/refresh-stats.yml` runs daily at 06:00 UTC, executes `npm run stats`, commits `src/data/stats.json` if anything changed.
+- Manual, local: `npm run stats` (optionally with `GITHUB_TOKEN=…` for higher rate limits).
+- Manual, from GitHub: trigger the "Refresh site stats" workflow via `workflow_dispatch`.
 
-### Windows Defender Application Control (Embargoed)
+**Resilience:**
 
-Embargoed Advisory
+- The script uses `Promise.allSettled` — a failure in one section (e.g., PyPI rate limiting) doesn't wipe other sections.
+- PyPI values are preserved per-package on fetch failure, so transient 429s don't zero out the daily-downloads number.
+- If the entire script fails, the committed `stats.json` from the previous run stays live.
 
-### Windows Defender Application Control (VIRT-051861)
+**Extending with octo11y:**
 
-[Click here for more information.](https://github.com/strawgate/Advisories/blob/main/Microsoft/VULN-051861.md)
+The workflow includes a commented-out job stub for `strawgate/octo11y/actions/repo-stats`. Uncomment it when you want deeper per-repo time-series (velocity, traffic, language-bytes-over-time) stored to a `bench-data` branch. The current pipeline gives you snapshot numbers; octo11y adds trend lines.
 
-### IBM BigFix (CVE-2017-1466)
+## Cutover checklist
 
-Embargoed Advisory
+Before the first real deploy:
 
-### IBM BigFix (CVE-2017-1222)
+- [x] Publish the flagship post at `src/content/posts/openapi-tool-transformation.md`.
+- [x] Standardize the public contact address to `bill@strawgate.com`.
+- [ ] Add `public/resume.pdf` if you want a downloadable PDF alongside the HTML resume.
+- [ ] Review `src/pages/talks.astro` and add any talks you want to feature beyond the AWS re:Invent 2024 Serverless launch and ElasticON keynote entry.
+- [ ] Review `src/pages/uses.astro` and swap any tooling details you want to personalize further.
+- [ ] Push the repo to GitHub.
+- [ ] In GitHub repo settings, set Pages to use GitHub Actions.
+- [ ] Point `strawgate.com` DNS at GitHub Pages.
+- [ ] Either let the scheduled workflow refresh stats once, or run `npm run stats` locally and commit the result.
 
-IBM BigFix Platform does not perform an authentication check for a critical resource or functionality allowing anonymous users access to protected areas.
+## Pages
 
-### IBM BigFix (CVE-2016-0214)
+| Path | File | What it is |
+|---|---|---|
+| `/` | `src/pages/index.astro` | Home — hero, recent posts, current projects, about preview, live facts row |
+| `/writing` | `src/pages/writing/index.astro` | Blog index |
+| `/writing/[slug]` | `src/pages/writing/[...slug].astro` | Individual post route |
+| `/projects` | `src/pages/projects.astro` | Full project list: Currently maintained / Contributing to / Past work |
+| `/talks` | `src/pages/talks.astro` | Keynotes and conference talks, topics, speaking contact |
+| `/about` | `src/pages/about.astro` | Full bio + live facts row |
+| `/uses` | `src/pages/uses.astro` | Editor, languages, AI stack, observability, hardware |
+| `/resume` | `src/pages/resume.astro` | HTML CV |
+| `/disclosures` | `src/pages/disclosures.astro` | Public and embargoed security disclosures, grouped by year |
+| `/404` | `src/pages/404.astro` | Custom 404 with sensible starting destinations |
+| `/rss.xml` | `src/pages/rss.xml.js` | RSS feed |
 
-In December of 2015 I discovered and privately disclosed a vulnerability in the IBM BigFix platform which permitted unauthenticated uploading of files and content to systems management infrastructure allowing adversaries to perform denial of service attacks as well as host phishing pages that would appear to originate from within the organization.
+**Top nav** (primary): Writing, Projects, Talks, About.
+**Footer** (secondary): Uses, Resume, Disclosures, plus contact links.
 
-### UW-Madison AANTS
+## Where to edit what
 
-In February of 2015 I discovered and privately disclosed a series of vulnerabilities which, when combined, would allow a remote unauthenticated (anonymous) attacker to manipulate all managed switches, routers, and firewalls on the UW Campus network.
+### Positioning / hero
 
-## VERVE Industrial Protection
+- **Headline and lede:** `src/components/Hero.astro`. The `<em>` tag gets the accent italic treatment.
+- **Facts row:** `src/components/FactsRow.astro`. Each item has a `live` flag — live values are pulled from stats.json; static values are hardcoded.
+- **Nav items:** `src/components/TopNav.astro`.
+- **Footer links:** `src/components/SiteFooter.astro`.
 
-### Chief Technology Officer
+### Content
 
-Starting in June of 2017 I became the Chief Technology Officer at Verve Industrial Protection with a mission to protect the world's critical infrastructure.
+- **Blog posts:** `src/content/posts/*.md`. Frontmatter schema:
 
-My job is to lead the development of our various software solutions. By incorporating Asset Management (Agent and Agentless), Asset Discovery, Log Management and Advanced Analytical capabilities, we help organizations cut through the noise of alerts, disparate tools, and information fragmentation that plague their environments.
+  ```yaml
+  ---
+  title: "Post title"
+  description: "Appears in the post list and as SEO description."
+  pubDate: 2026-04-24
+  tags: ["MCP", "Tool Transformation"]
+  draft: false
+  ---
+  ```
 
-## RES Software
+  Posts with `draft: true` are hidden from the list, their own page, and RSS.
 
-### Principal Consultant
+- **Projects:** `src/data/projects.ts`. One typed array. Each project may include a `githubRepo: 'owner/name'` to pull stars and archived status automatically from stats.json.
 
-I was the principal consultant for BigFix at RES Software working remotely from Madison, Wisconsin! 
+- **Disclosures:** `src/pages/disclosures.astro` — array at the top of the file.
 
-My primary responsibility at RES Software was to provide IBM BigFix and RES ONE Workspace expertise to US Federal Agencies implementing the Federal Government's Continuous Diagnostics & Mitigation (CDM) Initiative.
+- **About narrative:** `src/pages/about.astro`.
 
-My day-to-day at RES Software included developing, testing, and supporting the RES ONE Workspace and IBM BigFix Integration which brings the power of RES ONE Workspace into IBM BigFix.
+### Design tokens
 
-## Avnet Security Services
+CSS custom properties at the top of `src/styles/global.css`:
 
-I held a number of positions during my tenure at Avnet Security Services starting as an Endpoint Security Consultant in May of 2015, becoming the Team Lead for Endpoint Security in June of 2015, and finally being promoted again to Delivery Manager in November of 2015. Each promotion represented an expansion of responsibilities and not a shift into an entirely new role -- even as Delivery Manager I continued to lead the Endpoint Security team and provide Endpoint Security Consulting.
+```css
+--bg: #FAFAF7;
+--bg-warm: #F4F2EC;
+--ink: #1A1A1A;
+--ink-soft: #3F3F3A;
+--ink-muted: #7A7870;
+--rule: #E4E1D8;
+--accent: #A8442A;      /* terracotta accent */
 
-### US Delivery Manager
+--font-display: 'Instrument Serif', Georgia, serif;
+--font-body: 'Inter', system-ui, -apple-system, sans-serif;
+--font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+```
 
-From November of 2015 to June of 2016 I was the US Delivery Manager for Avnet Security Services working remotely from Madison, Wisconsin. As part of my responsibilities as a Delivery Manager, I traveled approximately 75% of the time.
+## Deploying
 
-In this role I helped manage relationships with partners, customers, and subcontractors. I spent significant time handling service management, continual service improvement and improving customer and partner satisfaction. I was responsible for Statement of Work creation, Statement of Work approval, rate negotiation with partners and subcontractors as well as personnel management.
+### Cloudflare Pages (recommended)
 
-### Endpoint Security Team Lead
+1. Push to GitHub.
+2. Cloudflare dashboard → Pages → Create → Connect to GitHub → select repo.
+3. Build command: `npm run build`. Output dir: `dist`. Env var: `NODE_VERSION=20`.
+4. Add `strawgate.com` in the project's Custom domains tab.
 
-From June of 2015 to June of 2016 I was the Endpoint and Mobile Security Team Lead at Avnet Security Services working remotely from Madison, Wisconsin. As part of my responsibilities as the Endpoint Security Team Lead, I was traveling approximately 25% of the time.
+Deploys on push to the production branch you configure in Cloudflare. Preview deploys on PRs.
 
-My primary responsibility was to develop and grow the Endpoint and Mobile security consulting practice at Avnet Services. In this role I worked primarily with customers in media, finance, energy, healthcare, and government helping them to secure their enterprise environments.
+### GitHub Pages
 
-My expertise was utilized in areas of industry with complex compliance concerns including NERC, HIPAA, and PCI. Responsibilities include market planning, pre-sales scoping, and technical guidance for Endpoint Security solutions.
+`.github/workflows/deploy.yml` is wired up. After pushing:
 
-## UW-Madison
+1. Repo settings → Pages → Source: GitHub Actions.
+2. `public/CNAME` already contains `strawgate.com`.
+3. Point DNS per [GitHub's docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
-### Endpoint Security Specialist
+### Vercel
 
-From January of 2011 to June of 2015 I was an Endpoint Management and Security Specialist at the University of Wisconsin-Madison working from Madison, Wisconsin
+```sh
+npm install -g vercel
+vercel
+```
 
-My primary responsibility was to architect and implement endpoint and server security solutions. In this role I spearheaded a large number of projects covering a wide variety of areas.
+Astro is a first-class framework. Zero config.
 
-Regulatory Compliance Work
+## What's intentionally not included
 
-+ Federal Select Agent (Biological Select Agents and Toxins)
-+ Payment Card Industry Data Security Standards (Credit Card data)
-+ CJIS (Criminal Justice Information Services)
+- **Dark mode toggle** — later, if ever.
+- **Newsletter signup** — wait until there are 3–4 posts up.
+- **Analytics** — add Plausible/Fathom/Cloudflare Web Analytics via a single script tag in `BaseLayout.astro` when you want it.
+- **Client-side search** — add it if the writing archive gets large enough to need it.
 
-Major Projects
+## License
 
-+ Primary application administrator for all three UW-Madison
-Campus IBM Endpoint Manager implementations managing
-15,000+ endpoints and servers.
-+ Discovered and privately disclosed 8 critical vulnerabilities in
-various UW-Madison campus tools and infrastructure
-+ Completed three large scale migrations from System Center
-Configuration Manager (SCCM) to IBM Endpoint Manager (IEM)
-
-## Miscellaneous
-
-Throughout my career I have gained invaluable experience with a number of tools including:
-
-+ IBM BigFix and Microsoft System Center
-+ Docker and Docker Swarm
-+ Elasticsearch, Logstash, Kibana and Beats
-+ Visual Studio Team Services
-+ DeployStudio and NetSUS
-+ Graylog, Splunk and QRadar
-+ Microsoft Deployment Toolkit and Windows Deployment Services
-+ Active Directory, Group Policy, Open Directory, Centrify
-+ Hyper-V, VMWare ESXi
-+ Microsoft Applocker, RES ONE Workspace Application Whitelisting
-+ McAfee VirusScan, McAfee Endpoint Security, Symantec Endpoint Protection, System Center Endpoint Protection
-+ Microsoft EMET, Microsoft App-V
-+ Identity Finder, Secunia CSI
-+ C#, Powershell, Python, Bash, Batch
-+ Windows and Mac OS Client and Server
-
-## Certifications
-
-### ISC(2) CISSP
-
-* Certified Information Systems Security Practitioner
-
-### Microsoft Solutions Expert
-
-* Microsoft Certified Solutions Expert for Server 2012r2
-* Microsoft Certified Solutions Expert for Cloud Platform and infrastructure
-* Microsoft Certified Solutions Associate for Windows 8
-
-### IBM Associate
-
-* IBM Certified Associate for IBM BigFix
-* IBM Certified Deployment Specialist for IBM BigFix
-* IBM MaaS360 Cloud Administrator
-
-### RES Certified Professional
-
-* RES ONE Workspace 2016 Certified Professional
-
-### Intel Security Specialist
-
-* Intel Security Product Specialist for ePolicy Orchestrator
-
-### Symantec Specialist
-
-* Symantec Certified Specialist for Endpoint Protection
-
-### IT Service Management
-
-* ITIL Foundations
-
-### CompTIA
-
-* CompTIA Advanced Security Practitioner
-* CompTIA Security+
-* CompTIA Mobility+
-* CompTIA A+
-
-# Volunteering
-
-In my free time I enjoy volunteering for various organizations in the Madison area including: Occupaws, Franklin Hiram King, Habitat for Humanity Dane County, and the American Red Cross.
-
-# Contact
-
-If you'd like to contact me please visit my [LinkedIn](https://www.linkedin.com/in/williamseaston) and send me a message!
+All content © William Easton. Scaffolding code is MIT.

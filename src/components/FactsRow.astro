@@ -1,0 +1,111 @@
+---
+import { stats, formatCount, freshnessLabel } from '../data/stats';
+
+// FactsRow — four credential-compressing stats.
+// Mix of static (career outcomes) and live (refreshed daily from GitHub + PyPI).
+// To edit: change the objects below. Values with `live: true` are pulled at build time.
+
+// "Lifetime merged OSS PRs" is more robust than an in-progress year — the YTD number
+// swings wildly early in the year and in calendar transitions. Lifetime trends up
+// monotonically and still updates daily.
+const facts = [
+  {
+    num: '$200M',
+    label: 'Exit as Verve CTO (Rockwell Automation, 2022)',
+    live: false,
+  },
+  {
+    num: formatCount(stats.pypi['py-key-value-aio']?.last_day),
+    label: 'Daily Downloads of py-key-value',
+    live: true,
+  },
+  {
+    num: '1 of 2',
+    label: 'Core FastMCP Maintainers',
+    live: false,
+  },
+  {
+    num: `${formatCount(stats.prs.all_time)}+`,
+    label: 'Lifetime Merged OSS PRs',
+    live: true,
+  },
+];
+
+const showFreshness = facts.some((f) => f.live);
+---
+
+<div class="facts">
+  {facts.map((f) => (
+    <div class="fact">
+      <span class="num">{f.num}</span>
+      <span class="label">
+        {f.label}
+        {f.live && <span class="live-dot" title="Refreshed at build time"></span>}
+      </span>
+    </div>
+  ))}
+</div>
+
+{showFreshness && (
+  <p class="freshness">
+    Live figures refreshed <time datetime={stats.generated_at}>{freshnessLabel()}</time>.
+  </p>
+)}
+
+<style>
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 32px 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .facts .fact {
+    font-size: 13px;
+  }
+  .facts .fact .num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .facts .fact .label {
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    line-height: 1.4;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.75;
+    flex-shrink: 0;
+  }
+  .freshness {
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-align: right;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 900px) {
+    .facts {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px 24px;
+    }
+  }
+</style>

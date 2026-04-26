@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Disclosures index — curated list of public + embargoed security disclosures.
+// Linked from the footer, not the top nav, so the AI/MCP positioning stays primary.
+
+interface Disclosure {
+  id: string;
+  title: string;
+  year: string;
+  vendor: string;
+  status: 'Public' | 'Embargoed' | 'Private disclosure';
+  summary: string;
+  links?: { label: string; href: string }[];
+}
+
+const disclosures: Disclosure[] = [
+  {
+    id: 'nvd-coordination',
+    year: '2022',
+    vendor: 'NIST',
+    title: 'National Vulnerability Database — coordinated error correction',
+    status: 'Public',
+    summary:
+      'Coordinated with NIST to identify and correct thousands of errors in the National Vulnerability Database. Downstream scanners got more trustworthy.',
+  },
+  {
+    id: 'microsoft-bug-bounty-2022',
+    year: '2022',
+    vendor: 'Microsoft',
+    title: 'Microsoft Bug Bounty — $3,000 award',
+    status: 'Public',
+    summary:
+      'Public recognition and a $3,000 award from Microsoft for a private vulnerability disclosure.',
+  },
+  {
+    id: 'log4shell-detection',
+    year: '2022',
+    vendor: 'Apache Log4j (tooling)',
+    title: 'Log4Shell Detection Tool',
+    status: 'Public',
+    summary:
+      'Open-sourced a Log4j detection tool with 90% lower resource use, 99% faster runtime, and zero false positives vs. incumbent scanners. Picked up by 150+ companies during the Log4Shell response.',
+  },
+  {
+    id: 'microsoft-wdac-powershell',
+    year: '2021',
+    vendor: 'Microsoft',
+    title: 'Windows PowerShell Core and Windows Defender Application Control',
+    status: 'Private disclosure',
+    summary:
+      'Privately disclosed several major vulnerabilities in Microsoft PowerShell Core and Windows Defender Application Control (WDAC). One of these became publicly documented as VULN-051861.',
+    links: [
+      {
+        label: 'VULN-051861 writeup',
+        href: 'https://github.com/strawgate/Advisories/blob/main/Microsoft/VULN-051861.md',
+      },
+    ],
+  },
+  {
+    id: 'bigfix-2021',
+    year: '2021',
+    vendor: 'IBM',
+    title: 'IBM BigFix — multiple vulnerabilities',
+    status: 'Private disclosure',
+    summary:
+      'Privately disclosed several major vulnerabilities in IBM BigFix during the Verve Industrial Protection period. Subsequent public CVEs grew out of earlier work on the same product family.',
+  },
+  {
+    id: 'cve-2017-1466',
+    year: '2017',
+    vendor: 'IBM',
+    title: 'IBM BigFix — CVE-2017-1466',
+    status: 'Embargoed',
+    summary: 'IBM BigFix advisory. Public details were embargoed at time of original disclosure.',
+  },
+  {
+    id: 'cve-2017-1222',
+    year: '2017',
+    vendor: 'IBM',
+    title: 'IBM BigFix — CVE-2017-1222',
+    status: 'Public',
+    summary:
+      'IBM BigFix Platform did not perform authentication checks for a critical resource, allowing anonymous users access to protected areas.',
+  },
+  {
+    id: 'cve-2016-0214',
+    year: '2015',
+    vendor: 'IBM',
+    title: 'IBM BigFix — CVE-2016-0214',
+    status: 'Public',
+    summary:
+      'Unauthenticated file upload vulnerability in the IBM BigFix platform, permitting denial of service and the hosting of phishing pages via management infrastructure.',
+  },
+  {
+    id: 'uwmadison-aants',
+    year: '2015',
+    vendor: 'University of Wisconsin-Madison',
+    title: 'UW-Madison AANTS — network infrastructure vulnerability chain',
+    status: 'Private disclosure',
+    summary:
+      'Chain of vulnerabilities that, when combined, would have let a remote unauthenticated attacker manipulate all managed switches, routers, and firewalls on the UW campus network. Privately disclosed and remediated.',
+  },
+];
+
+const grouped = disclosures.reduce((acc, d) => {
+  (acc[d.year] ||= []).push(d);
+  return acc;
+}, {} as Record<string, Disclosure[]>);
+
+const sortedYears = Object.keys(grouped).sort().reverse();
+---
+
+<BaseLayout
+  title="Disclosures — Bill Easton"
+  description="Public and embargoed security disclosures from Bill Easton, from IBM BigFix CVEs through Microsoft WDAC, Log4Shell tooling, and an NVD error-coordination project with NIST."
+>
+  <div class="container">
+    <header class="page-head">
+      <h1>Disclosures</h1>
+      <p class="dek">
+        Public and privately disclosed security findings from my pre-AI career. Most of
+        this work is eight to fifteen years old at this point — it's here to show how I
+        think, not as a service offering.
+      </p>
+    </header>
+
+    <section class="section">
+      {sortedYears.map((year) => (
+        <div class="year-group">
+          <h2 class="year">{year}</h2>
+          <ul class="disclosure-list">
+            {grouped[year].map((d) => (
+              <li id={d.id}>
+                <div class="meta">
+                  <span class="vendor">{d.vendor}</span>
+                  <span class={`status status-${d.status.toLowerCase().replace(/\s+/g, '-')}`}>
+                    {d.status}
+                  </span>
+                </div>
+                <h3>{d.title}</h3>
+                <p>{d.summary}</p>
+                {d.links && d.links.length > 0 && (
+                  <div class="links">
+                    {d.links.map((l) => (
+                      <a href={l.href}>{l.label} →</a>
+                    ))}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section class="section disclaimer">
+      <p>
+        If you're researching a specific advisory and need more detail than what's here,
+        email me at
+        <a href="mailto:bill@strawgate.com">bill@strawgate.com</a>. For active
+        vulnerability reports in any of my current open-source projects (FastMCP,
+        py-key-value, py-mcp-collection), please use GitHub security advisories rather
+        than public issues.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 40px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .page-head .dek {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .section {
+    padding: 40px 0 20px;
+  }
+  .year-group {
+    margin-bottom: 60px;
+  }
+  .year {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .disclosure-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .disclosure-list li {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .disclosure-list .meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .vendor {
+    color: var(--ink-muted);
+  }
+  .status {
+    padding: 2px 8px;
+    border-radius: 2px;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-size: 10px;
+  }
+  .status-public {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .status-embargoed {
+    color: var(--ink-muted);
+  }
+  .disclosure-list h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .disclosure-list p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .disclosure-list .links {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+  }
+  .disclosure-list .links a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .disclosure-list .links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .disclaimer {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    font-size: 15px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+  .disclaimer a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .disclaimer a:hover {
+    border-bottom-color: var(--accent);
+  }
+</style>

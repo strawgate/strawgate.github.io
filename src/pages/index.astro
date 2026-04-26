@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import WritingList from '../components/WritingList.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import FactsRow from '../components/FactsRow.astro';
+---
+
+<BaseLayout>
+  <div class="container">
+    <Hero />
+  </div>
+
+  <div class="container">
+    <section class="section" id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <a href="/projects" class="meta">All projects →</a>
+      </div>
+      <ProjectGrid filter="current" allowFeaturedSpan={false} />
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="section" id="writing">
+      <div class="section-head">
+        <h2>Writing</h2>
+        <a href="/writing" class="meta">All posts →</a>
+      </div>
+      <WritingList limit={3} />
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="section" id="about-preview">
+      <div class="section-head">
+        <h2>About</h2>
+        <a href="/about" class="meta">Full bio →</a>
+      </div>
+      <div class="about-preview">
+        <p>
+          Before Elastic I spent a decade in security — Amazon, Verve Industrial Protection,
+          federal endpoint controls, and BigFix vulnerability disclosures. In 2022 Verve was
+          acquired by Rockwell Automation for $200M; I left as CTO. That background left me
+          with a permanent distrust of fragile systems and an obsession with the plumbing
+          that holds them together.
+        </p>
+        <p>
+          Now I channel that into observability at scale and open-source agent infrastructure.
+          The problems are different; the instinct is the same.
+        </p>
+      </div>
+      <FactsRow />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-preview {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .about-preview p {
+    margin-bottom: 22px;
+  }
+  .about-preview p strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+</style>

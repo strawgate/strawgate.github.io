@@ -1,0 +1,133 @@
+{
+  "generated_at": "2026-04-24T05:15:09.779Z",
+  "user": {
+    "login": "strawgate",
+    "name": "Bill Easton",
+    "public_repos": 138,
+    "followers": 158,
+    "created_at": "2014-01-12T21:14:12Z"
+  },
+  "prs": {
+    "all_time": 2175,
+    "this_year": 1667,
+    "last_year": 423,
+    "year": 2026
+  },
+  "repos": [
+    {
+      "full_name": "PrefectHQ/fastmcp",
+      "name": "fastmcp",
+      "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
+      "stars": 24817,
+      "forks": 1956,
+      "open_issues": 226,
+      "open_prs": 1,
+      "archived": false,
+      "pushed_at": "2026-04-24T04:01:53Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/PrefectHQ/fastmcp"
+    },
+    {
+      "full_name": "strawgate/py-key-value",
+      "name": "py-key-value",
+      "description": "A pluggable interface for KV Stores",
+      "stars": 64,
+      "forks": 10,
+      "open_issues": 70,
+      "open_prs": 1,
+      "archived": false,
+      "pushed_at": "2026-04-14T23:33:42Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/strawgate/py-key-value"
+    },
+    {
+      "full_name": "strawgate/py-mcp-collection",
+      "name": "py-mcp-collection",
+      "description": "Assorted Python MCP Servers",
+      "stars": 11,
+      "forks": 6,
+      "open_issues": 5,
+      "open_prs": 0,
+      "archived": false,
+      "pushed_at": "2025-09-24T14:04:17Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/strawgate/py-mcp-collection"
+    },
+    {
+      "full_name": "strawgate/fastmcp-agents",
+      "name": "fastmcp-agents",
+      "description": "FastMCP-powered Agentic Workflows",
+      "stars": 23,
+      "forks": 9,
+      "open_issues": 23,
+      "open_prs": 1,
+      "archived": true,
+      "pushed_at": "2026-01-25T16:38:08Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/strawgate/fastmcp-agents"
+    },
+    {
+      "full_name": "strawgate/filesystem-operations-mcp",
+      "name": "filesystem-operations-mcp",
+      "description": "MCP Server for reading many files at the same time",
+      "stars": 25,
+      "forks": 6,
+      "open_issues": 0,
+      "open_prs": 0,
+      "archived": false,
+      "pushed_at": "2025-10-12T16:50:55Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/strawgate/filesystem-operations-mcp"
+    },
+    {
+      "full_name": "strawgate/es-knowledge-base-mcp",
+      "name": "es-knowledge-base-mcp",
+      "description": "Seamlessly load documentation from the web into Elasticsearch and immediately allow your LLM or AI Assistant to vector search documentation.",
+      "stars": 3,
+      "forks": 1,
+      "open_issues": 9,
+      "open_prs": 0,
+      "archived": false,
+      "pushed_at": "2025-06-10T00:27:01Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/strawgate/es-knowledge-base-mcp"
+    },
+    {
+      "full_name": "strawgate/augmented-infrastructure",
+      "name": "augmented-infrastructure",
+      "description": "Hackathon Project",
+      "stars": 4,
+      "forks": 0,
+      "open_issues": 0,
+      "open_prs": 0,
+      "archived": false,
+      "pushed_at": "2025-11-15T07:49:49Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/strawgate/augmented-infrastructure"
+    },
+    {
+      "full_name": "strawgate/o11ykit",
+      "name": "o11ykit",
+      "description": null,
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 59,
+      "open_prs": 1,
+      "archived": false,
+      "pushed_at": "2026-04-24T05:08:30Z",
+      "default_branch": "main",
+      "html_url": "https://github.com/strawgate/o11ykit"
+    }
+  ],
+  "pypi": {
+    "py-key-value-aio": {
+      "last_day": 2353458,
+      "last_week": 13977556,
+      "last_month": 69580993
+    }
+  },
+  "aggregates": {
+    "tracked_repos_count": 8,
+    "total_stars_tracked": 24947
+  }
+}

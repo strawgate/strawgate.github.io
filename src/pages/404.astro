@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Custom 404. Keep it short; keep it useful.
+// A handful of starting destinations is more useful than a funny "oops" message.
+---
+
+<BaseLayout
+  title="404 — Bill Easton"
+  description="That page does not exist. Here are some places that do."
+>
+  <div class="container">
+    <section class="fourohfour">
+      <p class="eyebrow">404</p>
+      <h1>That page isn't here.</h1>
+      <p class="lede">
+        Probably a typo, an old link, or a URL I broke when I reorganized.
+        Here is where to go next.
+      </p>
+
+      <ul class="links">
+        <li><a href="/">Home</a> — the site, from the top</li>
+        <li><a href="/writing">Writing</a> — recent posts</li>
+        <li><a href="/projects">Projects</a> — what I maintain and contribute to</li>
+        <li><a href="/about">About</a> — the full bio</li>
+      </ul>
+
+      <p class="report">
+        If you followed a link from somewhere and you think it used to work, please
+        <a href="https://github.com/strawgate">open an issue</a> or email me at
+        <a href="mailto:bill@strawgate.com">bill@strawgate.com</a>.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .fourohfour {
+    padding: 80px 0 120px;
+    max-width: 640px;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .fourohfour h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .lede {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+  }
+
+  .links {
+    list-style: none;
+    margin: 0 0 60px 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .links li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .links a {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s;
+    margin-right: 8px;
+  }
+  .links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .report {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+  .report a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .report a:hover {
+    border-bottom-color: var(--accent);
+  }
+</style>

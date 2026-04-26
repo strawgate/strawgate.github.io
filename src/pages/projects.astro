@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+---
+
+<BaseLayout
+  title="Projects — Bill Easton"
+  description="Open-source MCP infrastructure, Python libraries, AI framework contributions, and notable past security work."
+>
+  <div class="container">
+    <header class="page-head">
+      <h1>Projects</h1>
+      <p class="dek">
+        What I maintain, where I contribute, and what I’ve shipped.
+        Most of it lives at
+        <a href="https://github.com/strawgate">github.com/strawgate</a>.
+      </p>
+    </header>
+  </div>
+
+  <div class="container">
+    <section class="section">
+      <div class="section-head">
+        <h2>Currently maintained</h2>
+        <span class="meta">The things I actually own</span>
+      </div>
+      <ProjectGrid filter="current" />
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="section">
+      <div class="section-head">
+        <h2>Contributing to</h2>
+        <span class="meta">Ecosystems I show up in regularly</span>
+      </div>
+      <ProjectGrid filter="contributing" />
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="section">
+      <div class="section-head">
+        <h2>Past work</h2>
+        <span class="meta">Archived, superseded, or from a previous life</span>
+      </div>
+      <ProjectGrid filter="past" />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 40px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .page-head .dek {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .page-head .dek a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-head .dek a:hover {
+    border-bottom-color: var(--accent);
+  }
+  .section {
+    padding: 40px 0 60px;
+  }
+  .section-head .meta {
+    font-size: 13px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,21 @@
+{
+  "name": "strawgate-site",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal site for Bill Easton — strawgate.com",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "stats": "node scripts/refresh-stats.mjs",
+    "stats:unauth": "node scripts/refresh-stats.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.9",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.1.0"
+  }
+}

@@ -1,0 +1,271 @@
+---
+import { getProjectsWithLive } from '../data/projects';
+
+export interface Props {
+  filter?: 'current' | 'contributing' | 'past';
+  featuredOnly?: boolean;
+  allowFeaturedSpan?: boolean;
+}
+
+const { filter, featuredOnly = false, allowFeaturedSpan = true } = Astro.props;
+
+const allWithLive = getProjectsWithLive();
+const shown = allWithLive.filter((p) => {
+  if (featuredOnly && !p.featured) return false;
+  if (filter && p.category !== filter) return false;
+  return true;
+});
+
+const useGridLayout = !filter || filter === 'current';
+
+// Helpers for the display label
+const metaLabel = (p: typeof shown[number]): string | undefined => {
+  if (p.statValue && p.statLabel) return `${p.statValue} ${p.statLabel}`;
+  if (p.liveStarsFormatted) return `★ ${p.liveStarsFormatted}`;
+  return undefined;
+};
+---
+
+{useGridLayout ? (
+  <div class="projects">
+    {shown.map((p) => {
+      const label = metaLabel(p);
+      return (
+        <div class={`project ${p.featured ? 'featured' : ''} ${p.featured && allowFeaturedSpan ? 'featured-span' : ''}`}>
+          <div>
+            <div class="role">
+              {p.role}
+              {p.liveArchived && <span class="badge">archived</span>}
+            </div>
+            <h3>{p.name}</h3>
+            <p>{p.description}</p>
+          </div>
+          <div class="links">
+            {p.links.map((l) => (
+              <a href={l.href}>{l.label} →</a>
+            ))}
+            {label && <span class="stars">{label}</span>}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+) : (
+  <ul class="project-list">
+    {shown.map((p) => {
+      const label = metaLabel(p);
+      return (
+        <li>
+          <div class="meta">
+            <span class="role">
+              {p.role}
+              {p.liveArchived && <span class="badge">archived</span>}
+            </span>
+            {label && <span class="stars-inline">{label}</span>}
+          </div>
+          <h3>{p.name}</h3>
+          <p>{p.description}</p>
+          {p.links.length > 0 && (
+            <div class="links">
+              {p.links.map((l) => (
+                <a href={l.href}>{l.label} →</a>
+              ))}
+            </div>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+)}
+
+<style>
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .project {
+    background: var(--bg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 200px;
+    min-width: 0;
+  }
+  .project .role,
+  .project h3,
+  .project p,
+  .project .links,
+  .project .links a,
+  .project .stars {
+    min-width: 0;
+  }
+  .project h3,
+  .project .links a {
+    overflow-wrap: anywhere;
+  }
+  .project .role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 10px;
+    padding: 1px 6px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+  }
+  .project h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .project p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .project .links {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .project .links a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .project .links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .project .stars {
+    color: var(--ink-muted);
+    font-size: 12px;
+    font-family: var(--font-mono);
+  }
+  .project.featured {
+    background: var(--bg-warm);
+  }
+  .project.featured-span {
+    grid-column: span 2;
+  }
+  .project.featured-span h3 {
+    font-size: 36px;
+  }
+  .project.featured-span p {
+    font-size: 16px;
+    max-width: 620px;
+  }
+
+  @media (max-width: 680px) {
+    .projects {
+      grid-template-columns: 1fr;
+    }
+    .project.featured-span {
+      grid-column: span 1;
+    }
+    .project.featured-span h3 {
+      font-size: 28px;
+    }
+  }
+
+  /* Dense list layout for contributing + past */
+  .project-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .project-list li {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .project-list li:last-child {
+    border-bottom: none;
+  }
+  .project-list .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .project-list .role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .project-list .stars-inline {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .project-list h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .project-list p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .project-list .links {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+  }
+  .project-list .links a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .project-list .links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  @media (max-width: 680px) {
+    .projects {
+      grid-template-columns: 1fr;
+    }
+    .project.featured {
+      grid-column: span 1;
+    }
+    .project.featured h3 {
+      font-size: 28px;
+    }
+  }
+</style>

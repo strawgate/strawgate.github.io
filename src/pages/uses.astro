@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// /uses — following the uses.tech convention. Update when you change things.
+
+interface UseItem {
+  name: string;
+  detail?: string;
+  url?: string;
+}
+
+interface UseGroup {
+  title: string;
+  note?: string;
+  items: UseItem[];
+}
+
+const groups: UseGroup[] = [
+  {
+    title: 'Editor & shell',
+    note: 'The only part of the setup I am still actively tweaking.',
+    items: [
+      { name: 'Neovim + LazyVim', detail: 'Default for code editing.' },
+      { name: 'Cursor', detail: 'Default for anything where AI autocomplete pays for itself.' },
+      { name: 'zsh + starship', detail: 'No frameworks, just a fast prompt.' },
+      { name: 'Ghostty', detail: 'Terminal emulator.' },
+      { name: 'tmux', detail: 'Session manager.' },
+    ],
+  },
+  {
+    title: 'Languages I reach for',
+    items: [
+      { name: 'Python', detail: 'For MCP work, py-key-value, py-mcp-collection, LlamaIndex/PydanticAI contributions.' },
+      { name: 'Rust', detail: 'For research projects like fastforward (log forwarding with SIMD + Arrow + DataFusion).' },
+      { name: 'TypeScript', detail: 'For octo11y and GitHub Actions work, and the occasional frontend.' },
+      { name: 'PowerShell / Bash', detail: 'For the long tail of endpoint-management scripting that still earns its keep.' },
+    ],
+  },
+  {
+    title: 'AI & agent stack',
+    items: [
+      { name: 'FastMCP', url: 'https://github.com/PrefectHQ/fastmcp', detail: 'Obviously.' },
+      { name: 'PydanticAI', url: 'https://github.com/pydantic/pydantic-ai', detail: 'My preferred agent framework for Python right now.' },
+      { name: 'LlamaIndex', url: 'https://github.com/run-llama/llama_index', detail: 'For retrieval-heavy agents.' },
+      { name: 'litellm', url: 'https://github.com/BerriAI/litellm', detail: 'Model abstraction when I need to swap providers.' },
+      { name: 'docling', url: 'https://github.com/DS4SD/docling', detail: 'Document parsing.' },
+      { name: 'Claude + ChatGPT', detail: 'Day-to-day tool use. Model of the week varies.' },
+    ],
+  },
+  {
+    title: 'Observability & data',
+    note: 'Unsurprising given the day job, but real.',
+    items: [
+      { name: 'Elastic Cloud (Serverless)', url: 'https://www.elastic.co/cloud' },
+      { name: 'OpenTelemetry Collector', url: 'https://opentelemetry.io/docs/collector/' },
+      { name: 'EDOT SDKs', detail: "Elastic's distribution of OTel SDKs." },
+      { name: 'Kibana + ES|QL', detail: 'Primary query surface for both work and personal data.' },
+      { name: 'Grafana', detail: 'Where I share externally.' },
+    ],
+  },
+  {
+    title: 'Infrastructure',
+    items: [
+      { name: 'GitHub', detail: 'Source of truth for everything I ship publicly.' },
+      { name: 'GitHub Actions', detail: 'CI, scheduled workflows, and the octo11y repo-stats pipeline that feeds this site.' },
+      { name: 'Cloudflare', detail: 'DNS, Pages, and the edge.' },
+      { name: 'uv + ruff', detail: 'Python packaging and linting. Everything else got retired.' },
+    ],
+  },
+  {
+    title: 'Hardware',
+    items: [
+      { name: 'MacBook Pro', detail: 'M-series. Primary machine.' },
+      { name: 'Framework 13', detail: 'Linux secondary for things I want to test on something I can open up.' },
+      { name: 'Logitech MX Master', detail: 'Trackball if I am in a mood.' },
+      { name: 'Herman Miller Aeron', detail: 'Old chair, still great.' },
+    ],
+  },
+  {
+    title: 'Things I have stopped using',
+    note: "There's a lot to be said for removal.",
+    items: [
+      { name: 'Poetry → uv', detail: 'Faster, less fuss.' },
+      { name: 'VS Code → Cursor + Neovim', detail: 'Cursor for AI; Neovim for everything else.' },
+      { name: 'Docker for local dev', detail: 'Where I can. devcontainers are fine; I just do not need them most days.' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Uses — Bill Easton"
+  description="The tools, languages, and infrastructure Bill Easton actually uses day to day."
+>
+  <div class="container">
+    <header class="page-head">
+      <h1>Uses</h1>
+      <p class="dek">
+        What I actually use, following the
+        <a href="https://uses.tech">uses.tech</a> convention. I update it when I genuinely
+        swap something out. If something here is wrong, I changed my mind and forgot to
+        update the page, so open an
+        <a href="https://github.com/strawgate">issue</a>.
+      </p>
+    </header>
+
+    <section class="section">
+      {groups.map((g) => (
+        <div class="group">
+          <div class="group-head">
+            <h2>{g.title}</h2>
+            {g.note && <p class="group-note">{g.note}</p>}
+          </div>
+          <ul class="use-list">
+            {g.items.map((item) => (
+              <li>
+                {item.url ? (
+                  <a href={item.url} class="name">{item.name}</a>
+                ) : (
+                  <span class="name">{item.name}</span>
+                )}
+                {item.detail && <span class="detail">{item.detail}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 40px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .page-head .dek {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .page-head .dek a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-head .dek a:hover { border-bottom-color: var(--accent); }
+
+  .section { padding: 20px 0 40px; }
+  .group {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .group:first-child { padding-top: 16px; }
+  .group:last-child { border-bottom: none; }
+  .group-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .group-head h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .group-note {
+    font-size: 14px;
+    color: var(--ink-muted);
+    font-style: italic;
+    max-width: 360px;
+    text-align: right;
+  }
+
+  .use-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .use-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--rule);
+    display: grid;
+    grid-template-columns: minmax(160px, 220px) 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .use-list li:last-child { border-bottom: none; }
+  .use-list .name {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 15px;
+  }
+  .use-list a.name {
+    border-bottom: 1px solid var(--rule);
+    transition: all 0.15s;
+  }
+  .use-list a.name:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .use-list .detail {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 680px) {
+    .use-list li {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .group-head {
+      flex-direction: column;
+      gap: 8px;
+    }
+    .group-note {
+      text-align: left;
+    }
+  }
+</style>

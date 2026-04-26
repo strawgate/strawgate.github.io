@@ -1,0 +1,395 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// /resume — HTML CV.
+
+interface Role {
+  title: string;
+  company: string;
+  dates: string;
+  location?: string;
+  bullets: string[];
+}
+
+const experience: Role[] = [
+  {
+    title: 'Director of Product Management — Observability',
+    company: 'Elastic',
+    dates: 'Aug 2023 – Present',
+    location: 'Remote · Madison, WI',
+    bullets: [
+      "Direct the Data Ingest portfolio — OpenTelemetry Collector, EDOT SDKs and Profiling, Logstash, Beats, and Elastic Agent. These are the tools customers rely on to move petabytes of data daily into Elasticsearch and Elastic Cloud.",
+      "Regular ElasticON keynote speaker, presenting roadmaps across GenAI, Search, Observability, and Security.",
+      "Led Elastic's largest product launch in a decade — Elastic Serverless — at AWS re:Invent in December 2024.",
+      "Member of Elastic's AI Guild, responsible for accelerating the adoption of GenAI technologies across Elastic's product portfolio.",
+    ],
+  },
+  {
+    title: 'Senior Technical Product Manager — Security',
+    company: 'Amazon',
+    dates: 'May 2022 – Aug 2023',
+    location: 'Remote · Madison, WI',
+    bullets: [
+      'Led product management for a 120-person business unit with teams across Toronto, Seattle, and India.',
+      "Protected Amazon customer data from nation-state adversaries using high-security devices built on Amazon-custom silicon, firmware, and operating systems.",
+      'Directed development, procurement, delivery, and support for hardware deployed to 500,000+ Amazon employees and contractors across 100+ countries.',
+    ],
+  },
+  {
+    title: 'Chief Technology Officer',
+    company: 'Verve Industrial Protection',
+    dates: '2017 – May 2022',
+    location: 'Madison, WI',
+    bullets: [
+      'Grew a software business from 5 employees to more than 80 across engineering, product, IT, and support.',
+      'Launched a turnkey security, observability, and data-lake product for critical infrastructure — trusted by Berkshire Hathaway, Baxter Pharmaceuticals, Duracell, and others.',
+      'Delivered against key sales and market objectives leading to a $200M+ acquisition by Rockwell Automation, forming the foundation of its cybersecurity portfolio.',
+    ],
+  },
+  {
+    title: 'Technical Product Manager',
+    company: 'Ivanti (RES Software)',
+    dates: '2016 – 2017',
+    location: 'Remote · Madison, WI',
+    bullets: [
+      "Served as the sole Technical Product Manager providing Application Whitelisting expertise to US Federal Agencies implementing the DHS Continuous Diagnostics and Mitigation (CDM) program across five million endpoints.",
+      'Accelerated project delivery, transforming it from one year behind schedule to three months ahead of schedule.',
+    ],
+  },
+  {
+    title: 'Principal Consultant and Services Product Manager',
+    company: 'Tech Data (Avnet)',
+    dates: '2015 – 2016',
+    location: 'Remote · Madison, WI',
+    bullets: [
+      'Coordinated delivery of Identity and Access Management, Security Information and Event Management, Patch Management, and Vulnerability Management services into key business partners and customers.',
+    ],
+  },
+  {
+    title: 'Endpoint Security Specialist',
+    company: 'University of Wisconsin–Madison',
+    dates: '2011 – 2015',
+    location: 'Madison, WI',
+    bullets: [
+      'Endpoint Security in compliance-heavy environments covering Criminal Justice Information Systems (CJIS), Payment Card Industry (PCI), and Select-Agent bio-hazard programs.',
+    ],
+  },
+];
+
+interface PersonalProject {
+  title: string;
+  date: string;
+  detail: string;
+}
+
+const personalProjects: PersonalProject[] = [
+  {
+    title: 'py-key-value',
+    date: 'Ongoing',
+    detail:
+      'A top-1000 open-source Python library with more than 2 million downloads per day. Abstracts 15+ key-value and KV-compatible stores (in-memory, Redis, Valkey, Elasticsearch, DynamoDB, and more) behind one consistent async interface.',
+  },
+  {
+    title: 'FastMCP — core maintainer',
+    date: 'Ongoing',
+    detail:
+      "One of two core maintainers for the most popular Python framework for Model Context Protocol. Architected and delivered Tool Transformation, MCP Sampling capabilities, Storage, and the MCP server-wrapping composition model.",
+  },
+  {
+    title: 'OSS contributions (Dec 2024 – present)',
+    date: 'Ongoing',
+    detail:
+      '19 PRs in LlamaIndex (DuckDB, FlashRerank, performance); 7 PRs in PydanticAI (MCP support, Dynamic Tools, Tool Calling); additional PRs in litellm, docling; 2 ES|QL query-planning PRs in Elasticsearch.',
+  },
+  {
+    title: 'Log4Shell Detection',
+    date: '2022',
+    detail:
+      'Open-sourced a Log4j detection tool with 90% fewer resources, 99% less time to run, and zero false positives. Used by more than 150 companies.',
+  },
+  {
+    title: 'National Vulnerability Database error coordination',
+    date: '2022',
+    detail:
+      'Coordinated with NIST to identify and correct thousands of errors in the National Vulnerability Database.',
+  },
+  {
+    title: 'Microsoft Bug Bounty',
+    date: '2022',
+    detail: 'Public recognition and a $3,000 bug bounty for a private vulnerability disclosure to Microsoft.',
+  },
+  {
+    title: 'Microsoft Windows vulnerabilities',
+    date: '2021',
+    detail:
+      "Privately disclosed several major vulnerabilities in Microsoft PowerShell Core and Windows Defender Application Control.",
+  },
+  {
+    title: 'IBM BigFix vulnerabilities',
+    date: '2021 (and earlier)',
+    detail:
+      'Privately disclosed several major vulnerabilities in IBM BigFix software. Earlier public CVEs include CVE-2016-0214, CVE-2017-1222, and CVE-2017-1466.',
+  },
+  {
+    title: 'BigFix C3 Content',
+    date: '2016 – present',
+    detail:
+      'Principal maintainer of open-source Inventory, Security, and Compliance content for IBM BigFix. Used by hundreds of organizations managing 10 million+ endpoints.',
+  },
+];
+
+const certifications = [
+  'ISC2 Certified Information Systems Security Professional (CISSP)',
+  'BigFix Platform Professional',
+  'CompTIA Advanced Security Practitioner',
+  'Intel Security Product Specialist — ePO',
+  'MaaS360 (MDM) Cloud Administrator',
+  'Microsoft Certified Security Expert: Cloud Platform and Infrastructure (Charter Member)',
+  'Microsoft Certified Security Expert: Windows Server 2012r2',
+  'Microsoft Windows IoT for Device Builders',
+  'Microsoft SQL Server 2016 — Mission Critical and Hybrid',
+];
+---
+
+<BaseLayout
+  title="Resume — Bill Easton"
+  description="Bill Easton — Director of Product Management at Elastic, core FastMCP maintainer, former CTO of Verve Industrial Protection."
+>
+  <div class="container">
+    <header class="page-head">
+      <div class="title-row">
+        <h1>Resume</h1>
+      </div>
+      <p class="tagline">
+        Director of Product Management and Technology Leader specializing in AI,
+        Observability, and Security. Driving product strategy for Elastic's
+        Observability suite while serving as a core maintainer for FastMCP, the most
+        popular framework for building AI tools. Proven track record of leading
+        technical products to significant business outcomes, including a $200M exit
+        as CTO of Verve Industrial Protection.
+      </p>
+      <div class="contact-strip">
+        <span>Madison, WI</span>
+        <span class="sep">·</span>
+        <a href="mailto:bill@strawgate.com">bill@strawgate.com</a>
+        <span class="sep">·</span>
+        <a href="https://linkedin.com/in/williamseaston">linkedin.com/in/williamseaston</a>
+        <span class="sep">·</span>
+        <a href="https://github.com/strawgate">github.com/strawgate</a>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">Experience</h2>
+      {experience.map((role) => (
+        <article class="role">
+          <header class="role-head">
+            <div>
+              <h3>{role.title}</h3>
+              <p class="company">{role.company}</p>
+            </div>
+            <div class="role-meta">
+              <time>{role.dates}</time>
+              {role.location && <p class="location">{role.location}</p>}
+            </div>
+          </header>
+          <ul>
+            {role.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+        </article>
+      ))}
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Personal projects and open-source</h2>
+      {personalProjects.map((p) => (
+        <article class="project">
+          <header class="role-head">
+            <h3>{p.title}</h3>
+            <time>{p.date}</time>
+          </header>
+          <p>{p.detail}</p>
+        </article>
+      ))}
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Certifications</h2>
+      <ul class="certs">
+        {certifications.map((c) => <li>{c}</li>)}
+      </ul>
+    </section>
+
+    <section class="section extra">
+      <h2 class="section-title">Outside work</h2>
+      <ul class="certs">
+        <li>Guide dog raiser with <a href="https://occupaws.org">Occupaws Guide Dog Association</a></li>
+        <li>Children's advocate at a domestic abuse shelter</li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 40px 0 40px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+  .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .title-row h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .tagline {
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .contact-strip {
+    font-size: 14px;
+    color: var(--ink-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    align-items: center;
+  }
+  .contact-strip a {
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    transition: all 0.15s;
+  }
+  .contact-strip a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .contact-strip .sep {
+    color: var(--rule);
+  }
+
+  .section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section.extra { border-bottom: none; padding-bottom: 80px; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .role, .project {
+    margin-bottom: 32px;
+  }
+  .role-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .role-head h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .role .company {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .role-meta {
+    text-align: right;
+  }
+  .role-meta time {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .role-meta .location {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+    font-style: italic;
+  }
+  .role ul {
+    margin-left: 24px;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .role li {
+    margin-bottom: 8px;
+    padding-left: 6px;
+  }
+  .project p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: 720px;
+  }
+  .project .role-head time {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .certs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  .certs li {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 8px 0;
+    line-height: 1.5;
+  }
+  .certs li a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .certs li a:hover { border-bottom-color: var(--accent); }
+
+  @media (max-width: 680px) {
+    .role-head { flex-direction: column; gap: 6px; }
+    .role-meta { text-align: left; }
+    .certs { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { font-size: 10pt; }
+    .section-title { font-size: 16pt; }
+    .role-head h3 { font-size: 12pt; }
+    .tagline { font-size: 11pt; }
+  }
+</style>

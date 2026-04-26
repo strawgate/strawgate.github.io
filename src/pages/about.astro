@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FactsRow from '../components/FactsRow.astro';
+---
+
+<BaseLayout
+  title="About — Bill Easton"
+  description="Bill Easton — Director of Product Management for Observability at Elastic, core maintainer of FastMCP, former CTO of Verve Industrial Protection."
+>
+  <div class="container">
+    <header class="page-head">
+      <h1>About</h1>
+    </header>
+
+    <section class="section">
+      <div class="prose">
+        <p>
+          I'm <strong>William "Bill" Easton</strong> —
+          <a href="https://github.com/strawgate">strawgate</a> online. I work in the
+          unglamorous layers where systems either become reliable or become expensive
+          stories. By day, that means driving observability and ingest at Elastic. By night,
+          it means agent infrastructure, storage abstractions, and open-source work that
+          usually gets noticed only after it saves someone a very bad week.
+        </p>
+
+        <h2>What I do now</h2>
+
+        <p>
+          Since August 2023 I've been <strong>Director of Product Management for
+          Observability at Elastic</strong>. I direct the data-ingest portfolio — the tools
+          customers use to move petabytes of data a day into Elasticsearch and Elastic
+          Cloud. That means OpenTelemetry Collector, EDOT (the Elastic Distribution of
+          OpenTelemetry), SDKs and Profiling, Logstash, Beats, Elastic Agent, and APM
+          Server. The short version is that I work on the front door to the platform, and
+          front doors have a way of becoming everybody's problem at once.
+        </p>
+
+        <p>
+          I'm also an internal and external champion for Elastic's integration with the
+          GenAI and agent ecosystem — tools, MCP, and everything adjacent. A large part
+          of my role is translating between what infrastructure teams need, what product
+          teams want, and what users will actually tolerate.
+        </p>
+
+        <h2>FastMCP and the MCP work</h2>
+
+        <p>
+          Since August 2025 I've been one of two core maintainers of
+          <a href="https://github.com/PrefectHQ/fastmcp"><strong>FastMCP</strong></a>, the
+          most popular Python framework for Model Context Protocol. I architected and
+          delivered Tool Transformation, shipped MCP Sampling capabilities, and spend a
+          lot of time on Storage and the wrapping primitives that let one MCP server
+          compose many.
+        </p>
+
+        <p>
+          Jeremiah Lowin, FastMCP's creator, put it this way when he announced my
+          maintainer role:
+        </p>
+
+        <blockquote>
+          Bill showed up months ago — long before MCP was cool — and immediately began
+          insisting on the need for utilities to manipulate, transform, and compose MCP
+          servers into more usable forms. Many of Bill's contributions are the type we
+          prize most in the open-source world: critical internal optimizations and fixes
+          that ensure your server just works, even if you're not aware you're using them.
+          <br /><br />
+          — <a href="https://jlowin.dev/blog/fastmcp-bill-easton">Jeremiah Lowin</a>
+        </blockquote>
+
+        <h2>py-key-value, and the rest of the agent stack</h2>
+
+        <p>
+          I also maintain <strong>py-key-value</strong> — a top-1000 open-source Python
+          library with more than <strong>2 million downloads per day</strong>. It abstracts
+          the differences between fifteen-plus key-value and KV-compatible stores
+          (in-memory, Redis, Valkey, Elasticsearch, DynamoDB, and more) so that frameworks
+          and libraries can add storage without binding themselves to a backend.
+        </p>
+
+        <p>
+          Beyond the projects I maintain, I try to be a useful citizen across the broader
+          agent ecosystem. When something adjacent needs doing, I prefer shipping a
+          patch over writing a thread about why someone else should do it.
+        </p>
+
+        <h2>Before Elastic</h2>
+
+        <p>
+          Before Elastic, I was a <strong>Senior Technical Product Manager at
+          Amazon</strong> within the Security organization (May 2022 – August 2023). I led
+          product for a 120-person business unit with teams in Toronto, Seattle, and
+          India, building silicon-to-cloud endpoint security for Amazon's corporate workforce.
+          The devices I helped ship were deployed to over 500,000 people across 100+ countries,
+          built on Amazon-custom silicon, firmware, and operating systems to defend against
+          well-funded nation-state adversaries.
+        </p>
+
+        <p>
+          Before Amazon, I was <strong>Chief Technology Officer at Verve Industrial
+          Protection</strong> (2017 – May 2022). I grew the engineering and product
+          organization from five people to more than eighty, and launched a turnkey
+          security, observability, and security-data-lake product for critical
+          infrastructure — used by Berkshire Hathaway, Baxter Pharmaceuticals, Duracell,
+          and others. The secret sauce was our cross-vendor, agentless ICS inventory
+          capability: find and assess vulnerabilities in industrial control environments
+          without a span port or a network tap. The company was acquired by Rockwell
+          Automation in 2022, forming the foundation of Rockwell's cybersecurity portfolio.
+        </p>
+
+        <h2>Earlier</h2>
+
+        <p>
+          Earlier I was Technical Product Manager at <strong>Ivanti / RES Software</strong>
+          (2016–2017), the sole TPM providing application-allowlisting capabilities to US
+          federal agencies implementing DHS's Continuous Diagnostics and Mitigation (CDM)
+          program across more than five million endpoints. I brought that project from a
+          year behind schedule to three months ahead.
+        </p>
+
+        <p>
+          Before that I was a Principal Consultant and Services Product Manager at
+          <strong>Tech Data / Avnet</strong> (2015–2016), coordinating Identity, SIEM,
+          Patch Management, and Vulnerability Management services into key partners and
+          customers.
+        </p>
+
+        <p>
+          And earlier still: <strong>Endpoint Security Specialist at the University of
+          Wisconsin-Madison</strong> (2011–2015), covering compliance-heavy environments —
+          CJIS, PCI-DSS, and the Federal Select Agent program for biological select agents
+          and toxins. This is where I spent most of my twenties learning how large fleets
+          of endpoints actually break in production. A lot of the instincts I use in
+          FastMCP and py-key-value were calibrated here.
+        </p>
+
+        <h2>Security research</h2>
+
+        <p>
+          A sampler from the security side of my career:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Log4Shell Detection (2022)</strong> — open-sourced a Log4j detection
+            tool that used 90% fewer resources and ran 99% faster than incumbent scanners,
+            with no false positives. Picked up by more than 150 companies.
+          </li>
+          <li>
+            <strong>NVD Coordination (2022)</strong> — coordinated with NIST to fix
+            thousands of errors in the National Vulnerability Database.
+          </li>
+          <li>
+            <strong>Microsoft Bug Bounty (2022)</strong> — $3,000 award and public
+            recognition for a private vulnerability disclosure.
+          </li>
+          <li>
+            <strong>Microsoft PowerShell + Windows Defender Application Control
+            (2021)</strong> — privately disclosed several major vulnerabilities.
+          </li>
+          <li>
+            <strong>IBM BigFix (2021 and earlier)</strong> — CVE-2016-0214, CVE-2017-1222,
+            CVE-2017-1466, plus additional disclosures.
+          </li>
+        </ul>
+
+        <p>
+          Full index on the <a href="/disclosures">disclosures</a> page.
+        </p>
+
+        <h2>Why I write here</h2>
+
+        <p>
+          MCP is in the "people ship demos and call it done" phase. I'm not that interested
+          in demolargely in its "ship a demo and call it done" phase. I'm not interested
+          in demos. I care about what it takes to make these systems behave predictably in
+          production — tool surfaces that don't poison agents, transport lifecycles that
+          don't leak memory after a week, and sampling strategies that don't risk
+          bankruptcy. My security background mostly shows up as a habit of
+          asking, "A
+
+        <p>
+          If you're thinking about MCP at scale, or you want to argue with something I've
+          written, the fastest way is to
+          <a href="https://github.com/strawgate">open an issue on GitHub</a> or email me
+          at <a href="mailto:bill@strawgate.com">bill@strawgate.com</a>.
+        </p>
+
+        <h2>Outside work</h2>
+
+        <p>
+          I live in Madison, Wisconsin. I raise guide dogs for
+          <a href="https://occupaws.org/">Occupaws Guide Dog Association</a> and I'm a
+          children's advocate at a domestic abuse shelter. None of that is for branding.
+          It is just part of being a person.
+        </p>
+      </div>
+
+      <FactsRow />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 40px 0 32px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .section {
+    padding: 0 0 60px;
+  }
+</style>

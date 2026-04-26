@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WritingList from '../../components/WritingList.astro';
+---
+
+<BaseLayout
+  title="Writing — Bill Easton"
+  description="Essays on MCP, agent infrastructure, open-source maintenance, observability, and the production realities behind modern software systems."
+>
+  <div class="container">
+    <header class="page-head">
+      <h1>Writing</h1>
+      <p class="dek">
+        Posts about MCP, agent infrastructure, open-source maintenance, and the long
+        tail of production problems that demos ignore. Some are about tools,
+        some are about systems, and some are about what happens when the cost of
+        writing code drops faster than the cost of understanding it.
+      </p>
+      <p class="subscribe">
+        Subscribe via <a href="/rss.xml">RSS</a>. New posts every three to four weeks.
+      </p>
+    </header>
+
+    <section class="section">
+      <WritingList />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 40px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .page-head .dek {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+  .page-head .subscribe {
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+  .page-head .subscribe a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-head .subscribe a:hover {
+    border-bottom-color: var(--accent);
+  }
+  .section {
+    padding: 0 0 60px;
+  }
+</style>

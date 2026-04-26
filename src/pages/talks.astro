@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Talks index.
+// Add upcoming or recent talks to the `talks` array. Keep the topics list current.
+// Each entry: { title, venue, date, location, type: 'keynote' | 'talk' | 'panel' | 'podcast', links, description }
+
+interface Talk {
+  title: string;
+  venue: string;
+  date: string;
+  location?: string;
+  type: 'keynote' | 'talk' | 'panel' | 'podcast';
+  upcoming?: boolean;
+  description: string;
+  links?: { label: string; href: string }[];
+}
+
+const talks: Talk[] = [
+  {
+    title: 'Launching Elastic Serverless',
+    venue: 'AWS re:Invent',
+    date: '2024-12',
+    location: 'Las Vegas, NV',
+    type: 'keynote',
+    description:
+      "Led Elastic’s largest product launch in a decade, Elastic Serverless, on the AWS re:Invent stage. Covered the shift to fully serverless Elasticsearch, the ingest pipeline behind it, and what customers no longer need to think about.",
+  },
+  {
+    title: 'Observability Roadmap',
+    venue: 'ElasticON',
+    date: '2024',
+    type: 'keynote',
+    description:
+      "Regular keynote speaker at Elastic’s flagship conference. I cover the Observability roadmap, GenAI integration, Search, and Security wherever the Ingest portfolio is shaping what Elastic ships next.",
+  },
+  {
+    title: 'Agent Infrastructure and Tool Transformation',
+    venue: 'CodeRabbit Podcast',
+    date: '2026-04',
+    type: 'podcast',
+    description:
+      "Talked with the CodeRabbit team about the realities of building infrastructure for autonomous agents, why most OpenAPI tool dumps fail, and how we're approaching the problem with FastMCP.",
+    links: [{ label: 'Watch ↗', href: 'https://youtube.com/@CodeRabbitAI' }]
+  },
+  {
+    title: 'FastMCP, Production Realities, and Why Tools Break',
+    venue: 'Prefect Podcast with Jeremiah Lowin',
+    date: '2026-03',
+    type: 'podcast',
+    description:
+      "Joined FastMCP creator Jeremiah Lowin to discuss why I became a core maintainer, the challenges of stateful loops, and how we're building the layer that makes sure agents actually see the right data from 1,200 potential tools without hallucinating.",
+    links: [{ label: 'Listen ↗', href: 'https://jlowin.dev/blog/fastmcp-bill-easton' }]
+  },
+];
+
+// Topics I'm happy to speak about, for event organizers reading this page.
+const topics = [
+  'Model Context Protocol, production MCP, and tool transformation',
+  'Agent infrastructure — how agents actually consume observability signals',
+  'OpenTelemetry, EDOT, and the serverless ingest story',
+  'Running an open-source portfolio inside a public company',
+  'Security-minded AI: trust boundaries, tool surfaces, and what I learned as a CTO',
+];
+
+const fmtDate = (d: string) => {
+  const [y, m] = d.split('-');
+  if (!m) return y;
+  const month = new Date(`${y}-${m}-01T00:00:00Z`).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+  return month;
+};
+
+const past = talks.filter((t) => !t.upcoming).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const upcoming = talks.filter((t) => t.upcoming).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+---
+
+<BaseLayout
+  title="Talks — Bill Easton"
+  description="Keynotes and conference talks on MCP, observability, OpenTelemetry, and agent infrastructure."
+>
+  <div class="container">
+    <header class="page-head">
+      <h1>Talks</h1>
+      <p class="dek">
+        I speak where infrastructure, observability, and agent systems stop being abstract.
+        Most recent public talks have been at ElasticON and AWS re:Invent. If you want
+        technical detail instead of keynote fog, I’m a fit.
+      </p>
+    </header>
+
+    {upcoming.length > 0 && (
+      <section class="section">
+        <div class="section-head">
+          <h2>Upcoming</h2>
+        </div>
+        <ul class="talk-list">
+          {upcoming.map((t) => (
+            <li class="upcoming">
+              <div class="meta">
+                <span class="type">{t.type}</span>
+                <span class="venue">{t.venue}</span>
+                <time>{fmtDate(t.date)}</time>
+                {t.location && <span class="location">· {t.location}</span>}
+              </div>
+              <h3>{t.title}</h3>
+              <p>{t.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Past</h2>
+      </div>
+      <ul class="talk-list">
+        {past.map((t) => (
+          <li>
+            <div class="meta">
+              <span class="type">{t.type}</span>
+              <span class="venue">{t.venue}</span>
+              <time>{fmtDate(t.date)}</time>
+              {t.location && <span class="location">· {t.location}</span>}
+            </div>
+            <h3>{t.title}</h3>
+            <p>{t.description}</p>
+            {t.links && t.links.length > 0 && (
+              <div class="links">
+                {t.links.map((l) => (
+                  <a href={l.href}>{l.label} →</a>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Topics I'm glad to speak on</h2>
+      </div>
+      <ul class="topics">
+        {topics.map((t) => <li>{t}</li>)}
+      </ul>
+    </section>
+
+    <section class="section invite">
+      <p>
+        Inviting me to speak? Email
+        <a href="mailto:bill@strawgate.com">bill@strawgate.com</a> with the
+        event, the format, and the audience you're expecting. I generally prefer 20–40
+        minute talks, audiences that like technical detail, and venues within two time
+        zones of Madison.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 40px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .page-head .dek {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .section {
+    padding: 40px 0;
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .talk-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .talk-list li {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .talk-list li:last-child { border-bottom: none; }
+  .talk-list li.upcoming {
+    background: var(--bg-warm);
+    padding: 24px 28px;
+    margin-bottom: 12px;
+    border-left: 2px solid var(--accent);
+    border-bottom: none;
+  }
+  .talk-list .meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    flex-wrap: wrap;
+  }
+  .talk-list .type {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .talk-list .venue {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .talk-list time,
+  .talk-list .location {
+    font-feature-settings: 'tnum';
+  }
+  .talk-list h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .talk-list p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    max-width: 640px;
+  }
+  .talk-list .links {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+  }
+  .talk-list .links a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .talk-list .links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .topics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .topics li {
+    padding: 14px 0 14px 28px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .topics li:last-child { border-bottom: none; }
+  .topics li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: var(--font-display);
+  }
+  .invite {
+    padding: 32px 0 80px;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: 640px;
+  }
+  .invite a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .invite a:hover { border-bottom-color: var(--accent); }
+</style>

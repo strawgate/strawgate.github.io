@@ -1,0 +1,81 @@
+---
+// Hero — the single most important section. Edit copy directly here.
+// The <em> tag receives the accent color + italic treatment.
+---
+
+<section class="hero">
+  <h1>I build the infrastructure that earns the right to feel <em>boring</em>.</h1>
+  <p class="lede">
+    At Elastic I own the data-ingest portfolio — OpenTelemetry, Logstash, Elastic Agent,
+    APM Server — the layer that decides whether petabyte-scale systems feel steady or
+    chaotic. Outside of work, I maintain FastMCP and build the agent infrastructure that only
+    gets hard once real traffic and real failure modes show up.
+  </p>
+  <div class="cta-row">
+    <a href="/writing" class="primary">Writing &amp; Thoughts</a>
+    <a href="/projects" class="secondary">Open Source</a>
+    <a href="/about" class="secondary">About Bill</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 40px 0 80px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .hero h1 :global(em) {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero .lede {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin-bottom: 26px;
+    font-weight: 400;
+  }
+  .hero .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .hero .cta-row a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .hero .cta-row a:hover {
+    transform: translateY(-1px);
+  }
+  .hero .cta-row .primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .hero .cta-row .secondary {
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    background: color-mix(in srgb, white 30%, var(--bg) 70%);
+  }
+  @media (max-width: 680px) {
+    .hero .lede {
+      font-size: 19px;
+    }
+  }
+</style>
