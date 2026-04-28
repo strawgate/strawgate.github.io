@@ -1,13 +1,12 @@
 ---
-import { stats, formatCount, freshnessLabel } from '../data/stats';
+import { stats, formatCount, freshnessLabel, getTotalStarsAll, getPyPITotalMonthly, starHistory, STAR_HISTORY_MIN_POINTS } from '../data/stats';
+import Sparkline from './Sparkline.astro';
 
-// FactsRow — four credential-compressing stats.
-// Mix of static (career outcomes) and live (refreshed daily from GitHub + PyPI).
+// FactsRow — credential-compressing stats, mix of static and live.
 // To edit: change the objects below. Values with `live: true` are pulled at build time.
 
-// "Lifetime merged OSS PRs" is more robust than an in-progress year — the YTD number
-// swings wildly early in the year and in calendar transitions. Lifetime trends up
-// monotonically and still updates daily.
+// "Lifetime merged OSS PRs" trends up monotonically and updates daily.
+// Total stars = all repos across the account (not just tracked list).
 const facts = [
   {
     num: '$200M',
@@ -31,7 +30,10 @@ const facts = [
   },
 ];
 
+const totalStars = getTotalStarsAll();
+const pypiMonthly = getPyPITotalMonthly();
 const showFreshness = facts.some((f) => f.live);
+const showSparkline = starHistory.length >= STAR_HISTORY_MIN_POINTS;
 ---
 
 <div class="facts">
@@ -44,18 +46,31 @@ const showFreshness = facts.some((f) => f.live);
       </span>
     </div>
   ))}
+  <div class="fact fact-star">
+    {showSparkline && (
+      <div class="sparkline-wrap">
+        <Sparkline data={starHistory} height={28} />
+      </div>
+    )}
+    <span class="num">{formatCount(totalStars)}</span>
+    <span class="label">
+      GitHub Stars (all repos)
+      <span class="live-dot" title="Refreshed nightly"></span>
+    </span>
+  </div>
 </div>
 
 {showFreshness && (
   <p class="freshness">
     Live figures refreshed <time datetime={stats.generated_at}>{freshnessLabel()}</time>.
+    {pypiMonthly > 0 && ` · ${formatCount(pypiMonthly)} PyPI downloads/month`}
   </p>
 )}
 
 <style>
   .facts {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 24px;
     padding: 32px 0;
     margin-top: 40px;
@@ -85,6 +100,15 @@ const showFreshness = facts.some((f) => f.live);
     align-items: center;
     gap: 6px;
   }
+  .fact-star {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .sparkline-wrap {
+    margin-bottom: 8px;
+    height: 28px;
+  }
   .live-dot {
     display: inline-block;
     width: 6px;
@@ -106,6 +130,14 @@ const showFreshness = facts.some((f) => f.live);
     .facts {
       grid-template-columns: repeat(2, 1fr);
       gap: 32px 24px;
+    }
+    .fact-star {
+      grid-column: span 2;
+    }
+  }
+  @media (max-width: 480px) {
+    .facts {
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>

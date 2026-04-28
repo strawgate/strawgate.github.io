@@ -56,10 +56,19 @@ export interface SiteStats {
   aggregates: {
     tracked_repos_count: number;
     total_stars_tracked: number;
+    total_stars_all: number;
   };
 }
 
 export const stats: SiteStats = rawStats as SiteStats;
+
+export interface StarHistoryPoint {
+  date: string;
+  stars: number;
+}
+
+import rawStarHistory from './star-history.json';
+export const starHistory: StarHistoryPoint[] = rawStarHistory as StarHistoryPoint[];
 
 // ----------------------------------------------------------
 // Formatters
@@ -125,3 +134,29 @@ export function getDailyDownloads(pkg: string): string {
 export function getTotalStars(): number {
   return stats.aggregates.total_stars_tracked;
 }
+
+/**
+ * Total stars across ALL repos (not just tracked list).
+ */
+export function getTotalStarsAll(): number {
+  return stats.aggregates.total_stars_all;
+}
+
+/**
+ * Total daily downloads summed across all tracked PyPI packages.
+ */
+export function getPyPITotalDaily(): number {
+  return Object.values(stats.pypi).reduce((sum, p) => sum + (p.last_day ?? 0), 0);
+}
+
+/**
+ * Total monthly downloads summed across all tracked PyPI packages.
+ */
+export function getPyPITotalMonthly(): number {
+  return Object.values(stats.pypi).reduce((sum, p) => sum + (p.last_month ?? 0), 0);
+}
+
+/**
+ * Minimum data points needed before showing a sparkline (avoid a flat line).
+ */
+export const STAR_HISTORY_MIN_POINTS = 3;
