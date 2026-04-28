@@ -2,24 +2,26 @@
 /**
  * scripts/refresh-stats.mjs
  *
- * Scrapes GitHub + PyPI to produce src/data/stats.json.
+ * Scrapes GitHub + PyPI to produce:
+ *   - src/data/stats.json       — curated per-repo stats + aggregates
+ *   - src/data/star-history.json — nightly star total snapshots for timeline
  *
  * What it fetches:
  *   - User profile: public_repos, followers
+ *   - ALL repos (paginated) to compute true total stars across account
  *   - Merged PR counts (all-time and current-year) via GitHub Search API
  *   - Per-repo stats for a curated list (stars, forks, open issues, open PRs, archived, pushed_at)
- *   - py-key-value PyPI download stats (last day, last month)
+ *   - PyPI download stats for all published packages
  *
  * Usage:
  *   GITHUB_TOKEN=ghp_xxx node scripts/refresh-stats.mjs
  *   (Or drop the token for unauthenticated — rate-limited to 10 search reqs/min.)
  *
  * Output:
- *   Writes src/data/stats.json, preserving existing structure on per-field failure.
+ *   Writes stats.json and star-history.json, preserving existing data on per-field failure.
  *
- * This is intentionally small and dependency-free (uses built-in fetch).
- * If the GitHub API fails for any section, the previous value in stats.json is kept
- * for that section — so a flaky run never wipes out good data.
+ * Star history is self-seeded: every run appends a snapshot to star-history.json.
+ * Over time this builds a dataset for the star timeline on the homepage.
  */
 
 import fs from 'node:fs/promises';
@@ -28,10 +30,11 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STATS_PATH = path.join(__dirname, '..', 'src', 'data', 'stats.json');
+const STAR_HISTORY_PATH = path.join(__dirname, '..', 'src', 'data', 'star-history.json');
 
 const GITHUB_USER = 'strawgate';
 
-// Curated list of repos to pull per-repo stats for. Add more as needed.
+// Curated list of repos to pull per-repo stats for (display on projects page).
 const TRACKED_REPOS = [
   'PrefectHQ/fastmcp',
   'strawgate/py-key-value',
@@ -43,9 +46,8 @@ const TRACKED_REPOS = [
   'strawgate/o11ykit',
 ];
 
-// PyPI packages to pull download stats for. py-key-value is a monorepo; only the
-// -aio variant is currently published.
-const PYPI_PACKAGES = ['py-key-value-aio'];
+// All PyPI packages published by strawgate (found via pypi.org/simple).
+const PYPI_PACKAGES = ['py-key-value-aio', 'strawgate-es-mcp'];
 
 // ----------------------------------------------------------
 
@@ -129,6 +131,20 @@ async function fetchRepoStats(fullName) {
   };
 }
 
+async function fetchAllRepos() {
+  let page = 1;
+  const perPage = 100;
+  const allRepos = [];
+  while (true) {
+    const repos = await gh(`/users/${GITHUB_USER}/repos?per_page=${perPage}&page=${page}&sort=pushed`);
+    if (!repos || repos.length === 0) break;
+    allRepos.push(...repos);
+    if (repos.length < perPage) break;
+    page++;
+  }
+  return allRepos;
+}
+
 async function fetchAllRepoStats() {
   const results = await Promise.allSettled(TRACKED_REPOS.map(fetchRepoStats));
   const out = [];
@@ -141,6 +157,21 @@ async function fetchAllRepoStats() {
     }
   }
   return out;
+}
+
+async function fetchTotalStars(allRepos) {
+  return allRepos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
+}
+
+async function appendStarHistory(totalStars, existingHistory = []) {
+  const today = new Date().toISOString().split('T')[0];
+  const lastEntry = existingHistory[existingHistory.length - 1];
+  if (lastEntry?.date === today) {
+    existingHistory[existingHistory.length - 1] = { date: today, stars: totalStars };
+  } else {
+    existingHistory.push({ date: today, stars: totalStars });
+  }
+  return existingHistory.slice(-365);
 }
 
 async function fetchPyPIStats(existing = {}) {
@@ -194,11 +225,17 @@ async function main() {
   const results = await Promise.allSettled([
     fetchUserProfile(),
     fetchPrCounts(),
+    fetchAllRepos(),
     fetchAllRepoStats(),
     fetchPyPIStats(existing?.pypi ?? {}),
   ]);
 
-  const [userRes, prsRes, reposRes, pypiRes] = results;
+  const [userRes, prsRes, allReposRes, reposRes, pypiRes] = results;
+
+  const allRepos = allReposRes.status === 'fulfilled' ? allReposRes.value : [];
+  const totalStars = allRepos.length > 0
+    ? await fetchTotalStars(allRepos)
+    : (existing?.aggregates?.total_stars_all ?? 0);
 
   const stats = {
     generated_at: new Date().toISOString(),
@@ -217,27 +254,41 @@ async function main() {
   });
 
   // Derived aggregates (computed here rather than in the site code)
-  const totalStars = stats.repos.reduce((sum, r) => sum + (r.stars || 0), 0);
+  const trackedStars = stats.repos.reduce((sum, r) => sum + (r.stars || 0), 0);
   stats.aggregates = {
     tracked_repos_count: stats.repos.length,
-    total_stars_tracked: totalStars,
+    total_stars_tracked: trackedStars,
+    total_stars_all: totalStars,
   };
+
+  // Append star history snapshot
+  let starHistory = [];
+  try {
+    const raw = await fs.readFile(STAR_HISTORY_PATH, 'utf8');
+    starHistory = JSON.parse(raw);
+  } catch {
+    // Fresh file
+  }
+  starHistory = await appendStarHistory(totalStars, starHistory);
 
   await fs.mkdir(path.dirname(STATS_PATH), { recursive: true });
   await fs.writeFile(STATS_PATH, JSON.stringify(stats, null, 2) + '\n', 'utf8');
+  await fs.writeFile(STAR_HISTORY_PATH, JSON.stringify(starHistory, null, 2) + '\n', 'utf8');
 
   console.log(`Wrote ${path.relative(process.cwd(), STATS_PATH)}`);
-  console.log(`  public repos:     ${stats.user?.public_repos ?? '?'}`);
-  console.log(`  followers:        ${stats.user?.followers ?? '?'}`);
-  console.log(`  merged PRs total: ${stats.prs?.all_time ?? '?'}`);
+  console.log(`Wrote ${path.relative(process.cwd(), STAR_HISTORY_PATH)} (${starHistory.length} data points)`);
+  console.log(`  public repos:        ${stats.user?.public_repos ?? '?'}`);
+  console.log(`  followers:           ${stats.user?.followers ?? '?'}`);
+  console.log(`  merged PRs total:    ${stats.prs?.all_time ?? '?'}`);
   console.log(
-    `  merged PRs ${stats.prs?.year ?? '?'}:   ${stats.prs?.this_year ?? '?'}  (vs ${stats.prs?.last_year ?? '?'} prior year)`
+    `  merged PRs ${stats.prs?.year ?? '?'}:      ${stats.prs?.this_year ?? '?'}  (vs ${stats.prs?.last_year ?? '?'} prior year)`
   );
-  console.log(`  tracked repos:    ${stats.repos.length}`);
-  console.log(`  total stars:      ${totalStars}`);
+  console.log(`  total stars (all):   ${totalStars}`);
+  console.log(`  total stars (tracked): ${trackedStars}`);
+  console.log(`  tracked repos:       ${stats.repos.length}`);
   for (const pkg of Object.keys(stats.pypi ?? {})) {
     console.log(
-      `  ${pkg}/day: ${stats.pypi[pkg].last_day ?? '?'}   month: ${stats.pypi[pkg].last_month ?? '?'}`
+      `  ${pkg}/day: ${stats.pypi[pkg].last_day ?? '?'}   week: ${stats.pypi[pkg].last_week ?? '?'}   month: ${stats.pypi[pkg].last_month ?? '?'}`
     );
   }
 }

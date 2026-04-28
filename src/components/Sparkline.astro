@@ -1,0 +1,49 @@
+---
+interface Props {
+  data: { date: string; stars: number }[];
+  height?: number;
+  color?: string;
+}
+
+const { data, height = 32, color = 'var(--accent)' } = Astro.props;
+
+if (data.length < 2) {
+  // Not enough data to render
+}
+
+const w = 120;
+const pts = data.map((d, i) => {
+  const x = (i / (data.length - 1)) * w;
+  const min = Math.min(...data.map(d => d.stars));
+  const max = Math.max(...data.map(d => d.stars));
+  const range = max - min || 1;
+  const y = height - ((d.stars - min) / range) * height;
+  return `${x},${y}`;
+}).join(' ');
+---
+
+{data.length >= 2 && (
+  <svg
+    class="sparkline"
+    width={w}
+    height={height}
+    viewBox={`0 0 ${w} ${height}`}
+    aria-hidden="true"
+  >
+    <polyline
+      points={pts}
+      fill="none"
+      stroke={color}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+)}
+
+<style>
+  .sparkline {
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>
