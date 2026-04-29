@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-04-24T05:15:09.779Z",
+  "generated_at": "2026-04-29T00:18:26.085Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
     "public_repos": 138,
-    "followers": 158,
+    "followers": 159,
     "created_at": "2014-01-12T21:14:12Z"
   },
   "prs": {
-    "all_time": 2175,
-    "this_year": 1667,
-    "last_year": 423,
+    "all_time": 2123,
+    "this_year": 1697,
+    "last_year": 399,
     "year": 2026
   },
   "repos": [
@@ -18,12 +18,12 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 24817,
-      "forks": 1956,
-      "open_issues": 226,
-      "open_prs": 1,
+      "stars": 24904,
+      "forks": 1971,
+      "open_issues": 221,
+      "open_prs": 29,
       "archived": false,
-      "pushed_at": "2026-04-24T04:01:53Z",
+      "pushed_at": "2026-04-26T17:49:34Z",
       "default_branch": "main",
       "html_url": "https://github.com/PrefectHQ/fastmcp"
     },
@@ -32,9 +32,9 @@
       "name": "py-key-value",
       "description": "A pluggable interface for KV Stores",
       "stars": 64,
-      "forks": 10,
-      "open_issues": 70,
-      "open_prs": 1,
+      "forks": 11,
+      "open_issues": 63,
+      "open_prs": 11,
       "archived": false,
       "pushed_at": "2026-04-14T23:33:42Z",
       "default_branch": "main",
@@ -59,8 +59,8 @@
       "description": "FastMCP-powered Agentic Workflows",
       "stars": 23,
       "forks": 9,
-      "open_issues": 23,
-      "open_prs": 1,
+      "open_issues": 21,
+      "open_prs": 2,
       "archived": true,
       "pushed_at": "2026-01-25T16:38:08Z",
       "default_branch": "main",
@@ -111,10 +111,10 @@
       "description": null,
       "stars": 0,
       "forks": 0,
-      "open_issues": 59,
-      "open_prs": 1,
+      "open_issues": 83,
+      "open_prs": 0,
       "archived": false,
-      "pushed_at": "2026-04-24T05:08:30Z",
+      "pushed_at": "2026-04-28T22:47:02Z",
       "default_branch": "main",
       "html_url": "https://github.com/strawgate/o11ykit"
     }
@@ -128,7 +128,7 @@
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 25000,
-    "total_stars_all": 24947
+    "total_stars_tracked": 25034,
+    "total_stars_all": 216
   }
 }
