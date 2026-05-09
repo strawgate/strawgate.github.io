@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-08T00:18:59.061Z",
+  "generated_at": "2026-05-09T00:19:26.031Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
@@ -18,12 +18,12 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 25053,
-      "forks": 1993,
-      "open_issues": 220,
-      "open_prs": 21,
+      "stars": 25075,
+      "forks": 1996,
+      "open_issues": 221,
+      "open_prs": 25,
       "archived": false,
-      "pushed_at": "2026-05-07T19:31:25Z",
+      "pushed_at": "2026-05-08T14:59:17Z",
       "default_branch": "main",
       "html_url": "https://github.com/PrefectHQ/fastmcp"
     },
@@ -33,10 +33,10 @@
       "description": "A pluggable interface for KV Stores",
       "stars": 64,
       "forks": 12,
-      "open_issues": 63,
+      "open_issues": 62,
       "open_prs": 12,
       "archived": false,
-      "pushed_at": "2026-05-01T02:01:53Z",
+      "pushed_at": "2026-05-08T15:40:11Z",
       "default_branch": "main",
       "html_url": "https://github.com/strawgate/py-key-value"
     },
@@ -46,7 +46,7 @@
       "description": "Assorted Python MCP Servers",
       "stars": 11,
       "forks": 6,
-      "open_issues": 5,
+      "open_issues": 6,
       "open_prs": 0,
       "archived": false,
       "pushed_at": "2025-09-24T14:04:17Z",
@@ -133,7 +133,7 @@
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 25183,
+    "total_stars_tracked": 25205,
     "total_stars_all": 216
   }
 }
