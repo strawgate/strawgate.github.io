@@ -68,6 +68,14 @@ import ProjectGrid from '../components/ProjectGrid.astro';
     color: var(--ink-soft);
     max-width: 640px;
   }
+  @media (max-width: 680px) {
+    .page-head h1 {
+      font-size: clamp(36px, 8vw, 72px);
+    }
+    .page-head .dek {
+      font-size: 17px;
+    }
+  }
   .page-head .dek a {
     color: var(--accent);
     border-bottom: 1px solid var(--rule);

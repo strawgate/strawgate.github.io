@@ -71,6 +71,8 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-bottom: 40px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--rule);
@@ -205,5 +207,11 @@ a {
   }
   .prose {
     font-size: 17px;
+  }
+  .prose h2 {
+    font-size: 26px;
+  }
+  .prose h3 {
+    font-size: 21px;
   }
 }

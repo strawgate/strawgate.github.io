@@ -95,6 +95,14 @@ const fmt = (d: Date) =>
     font-size: 14px;
     color: var(--ink-soft);
   }
+  @media (max-width: 680px) {
+    .post-header h1 {
+      font-size: clamp(32px, 8vw, 56px);
+    }
+    .post-header .dek {
+      font-size: 17px;
+    }
+  }
   .post-footer a {
     text-decoration: none;
     transition: color 0.15s;
