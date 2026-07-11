@@ -55,7 +55,7 @@ The workflow includes a commented-out job stub for `strawgate/octo11y/actions/re
 Before the first real deploy:
 
 - [x] Publish the flagship post at `src/content/posts/openapi-tool-transformation.md`.
-- [x] Standardize the public contact address to `bill@strawgate.com`.
+- [x] Standardize the public contact address to `weaston@strawgate.com`.
 - [ ] Add `public/resume.pdf` if you want a downloadable PDF alongside the HTML resume.
 - [ ] Review `src/pages/talks.astro` and add any talks you want to feature beyond the AWS re:Invent 2024 Serverless launch and ElasticON keynote entry.
 - [ ] Review `src/pages/uses.astro` and swap any tooling details you want to personalize further.
