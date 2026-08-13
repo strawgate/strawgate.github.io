@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T00:12:09.751Z",
+  "generated_at": "2026-08-13T00:12:26.401Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
@@ -8,8 +8,8 @@
     "created_at": "2014-01-12T21:14:12Z"
   },
   "prs": {
-    "all_time": 3426,
-    "this_year": 2866,
+    "all_time": 3429,
+    "this_year": 2869,
     "last_year": 475,
     "year": 2026
   },
@@ -18,7 +18,7 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 27179,
+      "stars": 27195,
       "forks": 2242,
       "open_issues": 244,
       "open_prs": 19,
@@ -70,7 +70,7 @@
       "full_name": "strawgate/filesystem-operations-mcp",
       "name": "filesystem-operations-mcp",
       "description": "MCP Server for reading many files at the same time",
-      "stars": 25,
+      "stars": 24,
       "forks": 6,
       "open_issues": 0,
       "open_prs": 0,
@@ -133,7 +133,7 @@
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 27320,
-    "total_stars_all": 229
+    "total_stars_tracked": 27335,
+    "total_stars_all": 228
   }
 }
