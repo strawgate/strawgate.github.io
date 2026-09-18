@@ -1,0 +1,100 @@
+---
+import { pydanticPosts, pydanticPostUrl } from '../data/pydantic-posts';
+
+const formatDate = (value: string) =>
+  new Date(`${value}T00:00:00Z`).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+---
+
+<ol class="pydantic-writing-list">
+  {pydanticPosts.map((post) => (
+    <li>
+      <a href={pydanticPostUrl(post.slug)}>
+        <div class="meta-row">
+          <time datetime={post.published}>{formatDate(post.published)}</time>
+          <span class="category">{post.category}</span>
+          <span>{post.readTime}</span>
+        </div>
+        <div class="title-row">
+          <h3>{post.title}</h3>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .pydantic-writing-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .pydantic-writing-list li {
+    border-bottom: 1px solid var(--rule);
+  }
+  .pydantic-writing-list a {
+    display: block;
+    padding: 18px 0 20px;
+    text-decoration: none;
+  }
+  .meta-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 7px;
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-feature-settings: 'tnum';
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .category {
+    color: var(--accent);
+  }
+  .title-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 20px;
+  }
+  h3 {
+    font-family: var(--font-display);
+    font-size: 23px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    transition: color 0.15s;
+  }
+  .arrow {
+    color: var(--ink-muted);
+    font-family: var(--font-body);
+    font-size: 16px;
+    transition: color 0.15s, transform 0.15s;
+  }
+  a:hover h3,
+  a:focus-visible h3,
+  a:hover .arrow,
+  a:focus-visible .arrow {
+    color: var(--accent);
+  }
+  a:hover .arrow,
+  a:focus-visible .arrow {
+    transform: translate(2px, -2px);
+  }
+  @media (max-width: 680px) {
+    .pydantic-writing-list a {
+      padding: 16px 0 18px;
+    }
+    h3 {
+      font-size: 21px;
+    }
+  }
+</style>
