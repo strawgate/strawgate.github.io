@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T00:05:28.164Z",
+  "generated_at": "2026-09-21T00:05:14.565Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
@@ -8,8 +8,8 @@
     "created_at": "2014-01-12T21:14:12Z"
   },
   "prs": {
-    "all_time": 3543,
-    "this_year": 2983,
+    "all_time": 3544,
+    "this_year": 2984,
     "last_year": 475,
     "year": 2026
   },
@@ -18,9 +18,9 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 27759,
-      "forks": 2362,
-      "open_issues": 297,
+      "stars": 27803,
+      "forks": 2374,
+      "open_issues": 300,
       "open_prs": 52,
       "archived": false,
       "pushed_at": "2026-09-19T06:38:47Z",
@@ -57,7 +57,7 @@
       "full_name": "strawgate/fastmcp-agents",
       "name": "fastmcp-agents",
       "description": "FastMCP-powered Agentic Workflows",
-      "stars": 23,
+      "stars": 24,
       "forks": 9,
       "open_issues": 21,
       "open_prs": 2,
@@ -133,7 +133,7 @@
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 27904,
-    "total_stars_all": 233
+    "total_stars_tracked": 27949,
+    "total_stars_all": 234
   }
 }
