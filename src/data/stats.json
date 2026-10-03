@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T00:05:22.970Z",
+  "generated_at": "2026-10-03T00:05:03.204Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
@@ -8,8 +8,8 @@
     "created_at": "2014-01-12T21:14:12Z"
   },
   "prs": {
-    "all_time": 3572,
-    "this_year": 3012,
+    "all_time": 3573,
+    "this_year": 3013,
     "last_year": 475,
     "year": 2026
   },
@@ -18,12 +18,12 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 27951,
-      "forks": 2419,
-      "open_issues": 340,
-      "open_prs": 99,
+      "stars": 27959,
+      "forks": 2423,
+      "open_issues": 338,
+      "open_prs": 96,
       "archived": false,
-      "pushed_at": "2026-10-01T21:11:44Z",
+      "pushed_at": "2026-10-02T21:11:35Z",
       "default_branch": "main",
       "html_url": "https://github.com/PrefectHQ/fastmcp"
     },
@@ -31,7 +31,7 @@
       "full_name": "strawgate/py-key-value",
       "name": "py-key-value",
       "description": "A pluggable interface for KV Stores",
-      "stars": 81,
+      "stars": 80,
       "forks": 18,
       "open_issues": 65,
       "open_prs": 12,
@@ -121,19 +121,19 @@
   ],
   "pypi": {
     "py-key-value-aio": {
-      "last_day": 2626431,
-      "last_week": 14887322,
+      "last_day": 2723666,
+      "last_week": 15257355,
       "last_month": 58229793
     },
     "strawgate-es-mcp": {
-      "last_day": 0,
+      "last_day": 1,
       "last_week": 4,
       "last_month": 37
     }
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 28100,
-    "total_stars_all": 237
+    "total_stars_tracked": 28107,
+    "total_stars_all": 236
   }
 }
