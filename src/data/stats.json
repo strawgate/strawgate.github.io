@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T00:05:21.024Z",
+  "generated_at": "2026-10-08T00:05:00.194Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
@@ -8,8 +8,8 @@
     "created_at": "2014-01-12T21:14:12Z"
   },
   "prs": {
-    "all_time": 3619,
-    "this_year": 3059,
+    "all_time": 3620,
+    "this_year": 3060,
     "last_year": 475,
     "year": 2026
   },
@@ -18,12 +18,12 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 27988,
-      "forks": 2439,
-      "open_issues": 346,
-      "open_prs": 98,
+      "stars": 27998,
+      "forks": 2440,
+      "open_issues": 351,
+      "open_prs": 105,
       "archived": false,
-      "pushed_at": "2026-10-06T21:12:30Z",
+      "pushed_at": "2026-10-07T21:12:34Z",
       "default_branch": "main",
       "html_url": "https://github.com/PrefectHQ/fastmcp"
     },
@@ -126,14 +126,14 @@
       "last_month": 58229793
     },
     "strawgate-es-mcp": {
-      "last_day": 4,
-      "last_week": 7,
-      "last_month": 40
+      "last_day": 1,
+      "last_week": 6,
+      "last_month": 39
     }
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 28137,
+    "total_stars_tracked": 28147,
     "total_stars_all": 235
   }
 }
