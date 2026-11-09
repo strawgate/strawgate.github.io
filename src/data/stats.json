@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-08T00:03:36.855Z",
+  "generated_at": "2026-11-09T00:03:39.633Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
     "public_repos": 171,
-    "followers": 190,
+    "followers": 191,
     "created_at": "2014-01-12T21:14:12Z"
   },
   "prs": {
-    "all_time": 3808,
-    "this_year": 3248,
+    "all_time": 3809,
+    "this_year": 3249,
     "last_year": 475,
     "year": 2026
   },
@@ -18,12 +18,12 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 28338,
-      "forks": 2563,
+      "stars": 28350,
+      "forks": 2569,
       "open_issues": 285,
-      "open_prs": 175,
+      "open_prs": 176,
       "archived": false,
-      "pushed_at": "2026-11-07T23:42:59Z",
+      "pushed_at": "2026-11-08T23:42:14Z",
       "default_branch": "main",
       "html_url": "https://github.com/PrefectHQ/fastmcp"
     },
@@ -31,9 +31,9 @@
       "full_name": "strawgate/py-key-value",
       "name": "py-key-value",
       "description": "A pluggable interface for KV Stores",
-      "stars": 81,
-      "forks": 19,
-      "open_issues": 77,
+      "stars": 80,
+      "forks": 20,
+      "open_issues": 78,
       "open_prs": 15,
       "archived": false,
       "pushed_at": "2026-10-04T18:32:45Z",
@@ -44,7 +44,7 @@
       "full_name": "strawgate/py-mcp-collection",
       "name": "py-mcp-collection",
       "description": "Assorted Python MCP Servers",
-      "stars": 11,
+      "stars": 10,
       "forks": 6,
       "open_issues": 6,
       "open_prs": 0,
@@ -57,7 +57,7 @@
       "full_name": "strawgate/fastmcp-agents",
       "name": "fastmcp-agents",
       "description": "FastMCP-powered Agentic Workflows",
-      "stars": 24,
+      "stars": 23,
       "forks": 9,
       "open_issues": 21,
       "open_prs": 2,
@@ -96,7 +96,7 @@
       "full_name": "strawgate/augmented-infrastructure",
       "name": "augmented-infrastructure",
       "description": "Hackathon Project",
-      "stars": 4,
+      "stars": 3,
       "forks": 0,
       "open_issues": 0,
       "open_prs": 0,
@@ -121,8 +121,8 @@
   ],
   "pypi": {
     "py-key-value-aio": {
-      "last_day": 2885961,
-      "last_week": 16666985,
+      "last_day": 1610904,
+      "last_week": 16923565,
       "last_month": 62888958
     },
     "strawgate-es-mcp": {
@@ -133,7 +133,7 @@
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 28487,
-    "total_stars_all": 236
+    "total_stars_tracked": 28495,
+    "total_stars_all": 232
   }
 }
