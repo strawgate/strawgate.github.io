@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-17T00:03:36.051Z",
+  "generated_at": "2026-11-18T00:03:38.590Z",
   "user": {
     "login": "strawgate",
     "name": "Bill Easton",
-    "public_repos": 171,
-    "followers": 191,
+    "public_repos": 172,
+    "followers": 192,
     "created_at": "2014-01-12T21:14:12Z"
   },
   "prs": {
-    "all_time": 3812,
-    "this_year": 3252,
+    "all_time": 3820,
+    "this_year": 3260,
     "last_year": 475,
     "year": 2026
   },
@@ -18,12 +18,12 @@
       "full_name": "PrefectHQ/fastmcp",
       "name": "fastmcp",
       "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
-      "stars": 28591,
-      "forks": 2615,
+      "stars": 28634,
+      "forks": 2620,
       "open_issues": 161,
-      "open_prs": 80,
+      "open_prs": 81,
       "archived": false,
-      "pushed_at": "2026-11-16T23:42:09Z",
+      "pushed_at": "2026-11-17T23:42:43Z",
       "default_branch": "main",
       "html_url": "https://github.com/PrefectHQ/fastmcp"
     },
@@ -31,12 +31,12 @@
       "full_name": "strawgate/py-key-value",
       "name": "py-key-value",
       "description": "A pluggable interface for KV Stores",
-      "stars": 82,
+      "stars": 83,
       "forks": 21,
-      "open_issues": 79,
-      "open_prs": 16,
+      "open_issues": 61,
+      "open_prs": 9,
       "archived": false,
-      "pushed_at": "2026-10-04T18:32:45Z",
+      "pushed_at": "2026-11-17T03:40:44Z",
       "default_branch": "main",
       "html_url": "https://github.com/strawgate/py-key-value"
     },
@@ -121,19 +121,19 @@
   ],
   "pypi": {
     "py-key-value-aio": {
-      "last_day": 2044534,
-      "last_week": 18949034,
-      "last_month": 69497877
+      "last_day": 3253735,
+      "last_week": 19322229,
+      "last_month": 71328856
     },
     "strawgate-es-mcp": {
-      "last_day": 1,
+      "last_day": 2,
       "last_week": 15,
-      "last_month": 50
+      "last_month": 44
     }
   },
   "aggregates": {
     "tracked_repos_count": 8,
-    "total_stars_tracked": 28738,
-    "total_stars_all": 236
+    "total_stars_tracked": 28782,
+    "total_stars_all": 237
   }
 }
